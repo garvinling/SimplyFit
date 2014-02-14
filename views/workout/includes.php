@@ -7,7 +7,7 @@
   <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" /> 
 
   <link href='http://fonts.googleapis.com/css?family=Signika+Negative' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 
@@ -23,3 +23,4 @@
     <script src="http://garvinling.com/bootstrap/bootstrap/js/bootstrap.js"></script>
     <script src="http://garvinling.com/js/front_end.js"></script>
 
+    <script src="http://garvinling.com/js/profile.js"></script>
