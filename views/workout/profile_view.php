@@ -137,7 +137,7 @@
 				<div class="row">
 					<div class="col-md-2">
 
-							<button class="btn btn-primary" style="width:65px;" data-toggle="modal" data-target="#workoutModal"><span class="glyphicon glyphicon-plus-sign"></span></button>
+							<button class="btn btn-primary" style="width:65px;" data-toggle="modal" data-target="#workoutModal" id="new_log_button"><span class="glyphicon glyphicon-plus-sign"></span></button>
 
 					</div>
 				</div>
