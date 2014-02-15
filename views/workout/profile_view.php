@@ -183,83 +183,32 @@
 
 	              	<div class="form-group" id="exercise_form_group">
 	               	<label for="exercise">How many exercises?</label>
-	                <input type="text" name="number_of_exercises" placeholder="(Ex. Bench Press)" class="form-control" id="number_of_exercises"/><br><br>
+	                <input type="text" name="number_of_exercises" placeholder="(Enter # of exercises in this routine.)" class="form-control" id="number_of_exercises"/><br><br>
 	                <input type="submit" class = "btn btn-success btn-large input-block-level" id="exercise_add_button" value="Create"/>
 	               </div>
-
 	           </form>
 
 	           <br>
-
 	           <div id="exercise_form">
-	             <form class="form-inline" id="register_form">
-
-
-	             <!--
-	                   
-	               <div class="form-group">
-	               	<label for="exercise">Exercise:</label>
-	                <input type="text" name="exercise" placeholder="(Ex. Bench Press)" class="form-control" id="user_name_input">
-	               </div>
-
-	              <div class="form-group">
-	                <label for="repetitions">Repetitions:</label>
-	                <input type="text" name="repetitions" placeholder="(Ex. 12)" class="form-control" id="user_pw_input">
-	              </div>
-
-        		  <div class="form-group">
-	                <label for="weight">Weight:</label>
-	                <input type="text" name="weight" placeholder="(Ex. 180 lbs.)" class="form-control" id="user_pw_input">
-	              </div>
-
-
-	              <br><br>
-
-	    	       <div class="form-group">
-	               	<label for="exercise">Exercise:</label>
-	                <input type="text" name="exercise" placeholder="(Ex. Bench Press)" class="form-control" id="user_name_input">
-	               </div>
-
-	              <div class="form-group">
-	                <label for="repetitions">Repetitions:</label>
-	                <input type="text" name="repetitions" placeholder="(Ex. 12)" class="form-control" id="user_pw_input">
-	              </div>
-
-        		  <div class="form-group">
-	                <label for="weight">Weight:</label>
-	                <input type="text" name="weight" placeholder="(Ex. 180 lbs.)" class="form-control" id="user_pw_input">
-	              </div>
-
-	              <br><br>
+		
 
 
 
-	      	      <div class="form-group">
-	               	<label for="exercise">Exercise:</label>
-	                <input type="text" name="exercise" placeholder="(Ex. Bench Press)" class="form-control" id="user_name_input">
-	               </div>
-
-	              <div class="form-group">
-	                <label for="repetitions">Repetitions:</label>
-	                <input type="text" name="repetitions" placeholder="(Ex. 12)" class="form-control" id="user_pw_input">
-	              </div>
-
-        		  <div class="form-group">
-	                <label for="weight">Weight:</label>
-	                <input type="text" name="weight" placeholder="(Ex. 180 lbs.)" class="form-control" id="user_pw_input">
-	              </div>
-
-	              <br><br>
-	              <textarea class="form-control" rows="3" placeholder="Enter tags"></textarea>
-	              <br><br>
 
 
-	               <input type="submit" class = "btn btn-success btn-large input-block-level" id="register_new_button"value="Register"/>
 
-					
-				</div>-->
+
+
+
+				 <input type="submit" class = "btn btn-success btn-large input-block-level" id="create_workout_button" value="Creatsse" style="display:none;"/>
 	              </form>
         </div> <!-- end form-div -->
+ 
+
+
+
+
+
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

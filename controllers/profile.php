@@ -43,12 +43,12 @@ class Profile extends CI_Controller {
 				echo "<div class=\"form-group\">";
 				echo "<label for=\"exercise\">Exercise:</label>";
 				echo "<input type=\"text\" name=\"exercise\" placeholder=\"(Ex. Bench Press)\" class=\"form-control\" id=\"exercise_".$i."\">";
-				echo "</div>";
+				echo "</div>  &nbsp; &nbsp;";
 
 				echo "<div class=\"form-group\">";
 				echo "<label for=\"repetitions\">Repetitions:</label>";
 				echo "<input type=\"text\" name=\"repetitions\" placeholder=\"(Ex. 12)\" class=\"form-control\" id=\"repetitions_".$i."\">";
-				echo "</div>";
+				echo "</div> &nbsp; &nbsp;";
 
 
 				echo "<div class=\"form-group\">";
@@ -56,10 +56,9 @@ class Profile extends CI_Controller {
 				echo "<input type=\"text\" name=\"weights\" placeholder=\"(Ex. 180)\" class=\"form-control\" id=\"weights_".$i."\">";
 				echo "</div><br><br>";
 
-
 			}
+			echo "<input type=\"submit\" id=\"create_workout_button\" class=\"btn btn-primary\" value=\"register\"/>";
 
-			echo "</form>";
 		}//end if
 
 	               
