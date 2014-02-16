@@ -192,18 +192,28 @@
 	              	<div class="form-group" id="exercise_form_group">
 	               	<label for="exercise">How many exercises?</label>
 	                <input type="text" name="number_of_exercises" placeholder="(Enter # of exercises in this routine.)" class="form-control" id="number_of_exercises"/><br><br>
-	                <input type="submit" class = "btn btn-success btn-large input-block-level" id="exercise_add_button" value="Create"/>
 	               </div>
-	           
+	               <br>
 
+	               <div class="form-group">
+				<label for="exercise">Name your exercise:</label>
+				<input type="text" name="routine_name" placeholder="(Ex. Tricep Thursday)" class="form-control" id="routine_name"/>
+				</div>  <br>
+
+      		 <br>
+			       <div class="form-group">
+			       <label for="tags">Enter tags:</label><br>
+			       <input type="text" data-role="tagsinput" id="tags" name="tags" class="form-control" placeholder="Separate tags by space"/>
+			       </div>
+			       <br><br>
+
+
+	           
+	                <input type="submit" class = "btn btn-success btn-large input-block-level" id="exercise_add_button" value="Create"/>
+	                <br>
 	           </form>
 
-		       <br><br>
-		       <div class="form-group" >
-		       <input type="text" data-role="tagsinput" id="tags" name="tags" style="width:900px;"/>
-		       </div>
-
-	           <br>
+		
 	           <div id="exercise_form">
 						
 

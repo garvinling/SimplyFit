@@ -21,6 +21,9 @@ class Profile extends CI_Controller {
 		{
 			$this->load->view('workout/profile_view');  //Send in data through the second argument
 
+
+
+
 		}
 		else
 		{
@@ -39,15 +42,9 @@ class Profile extends CI_Controller {
 			$_SESSION['exercise_num'] = $num_exercises;
 			echo "<form class=\"form-inline\" id=\"new_exercise_form\">";
 				
-				echo "<div class=\"form-group\">";
-				echo "<label for=\"exercise\">Name your exercise:</label>";
-				echo "<input type=\"text\" name=\"routine_name\" placeholder=\"(Ex. Tricep Thursday)\" class=\"form-control\" id=\"routine_name\"/>";
-				echo "</div>  <br><br>";
 
-				echo "<div class=\"form-group\">";
-				echo "<label for=\"exercise\">Tags:</label>";
-				echo "<input type=\"text\" name=\"routine_tags\" data-role=\"tagsinput\" placeholder=\"#LegDay\" class=\"form-control\" id=\"routine_tags\"/>";
-				echo "</div>  <br><br>";
+
+
 
 			for($i = 0 ; $i < $num_exercises; $i++)
 			{
@@ -68,7 +65,7 @@ class Profile extends CI_Controller {
 				echo "</div><br><br>";
 
 			}
-			echo "<input type=\"submit\" id=\"create_workout_button\" class=\"btn btn-primary\" value=\"register\"/>";
+			echo "<input type=\"submit\" id=\"create_workout_button\" class=\"btn btn-primary\" value=\"Submit\"/>";
 
 		}//end if
 	}//end generateExerciseInputForm
