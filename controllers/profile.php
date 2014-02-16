@@ -106,7 +106,7 @@ class Profile extends CI_Controller {
 
 			echo $tags;
 			$this ->load->model('workout_log_model');
-			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions);
+			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags);
 			echo "200";
 	}
 

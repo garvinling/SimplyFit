@@ -11,7 +11,7 @@
 		}
 
 
-		public function createNewLog($username,$date_month,$date_day,$routine_name,$weight,$reps){
+		public function createNewLog($username,$date_month,$date_day,$routine_name,$weight,$reps,$tags){
 
 					$comma_separated_repetitions = implode(",", $reps);
 					$comma_separated_weight = implode(",", $weight);
@@ -26,7 +26,8 @@
 							'date_day'        =>   $date_day,
 							'name_of_routine' => $routine_name,
 							'weight'      => $comma_separated_weight,
-							'repetitions' => $comma_separated_repetitions
+							'repetitions' => $comma_separated_repetitions,
+							'tags'        => $tags
 								
 
 							);
