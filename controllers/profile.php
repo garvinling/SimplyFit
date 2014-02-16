@@ -33,7 +33,6 @@ class Profile extends CI_Controller {
 
 
 		$num_exercises = $this->input->post('number_of_exercises');
-
 		if($num_exercises > 0)
 		{
 			
@@ -42,15 +41,19 @@ class Profile extends CI_Controller {
 				
 				echo "<div class=\"form-group\">";
 				echo "<label for=\"exercise\">Name your exercise:</label>";
-				echo "<input type=\"text\" name=\"routine_name\" placeholder=\"(Ex. Tricep Thursday)\" class=\"form-control\" id=\"routine_name\">";
+				echo "<input type=\"text\" name=\"routine_name\" placeholder=\"(Ex. Tricep Thursday)\" class=\"form-control\" id=\"routine_name\"/>";
 				echo "</div>  <br><br>";
 
+				echo "<div class=\"form-group\">";
+				echo "<label for=\"exercise\">Tags:</label>";
+				echo "<input type=\"text\" name=\"routine_tags\" data-role=\"tagsinput\" placeholder=\"#LegDay\" class=\"form-control\" id=\"routine_tags\"/>";
+				echo "</div>  <br><br>";
 
 			for($i = 0 ; $i < $num_exercises; $i++)
 			{
 				echo "<div class=\"form-group\">";
 				echo "<label for=\"exercise\">Exercise:</label>";
-				echo "<input type=\"text\" name=\"exercise_".$i."\" placeholder=\"(Ex. Bench Press)\" class=\"form-control\" id=\"exercise_".$i."\">";
+				echo "<input type=\"text\" name=\"exercise_".$i."\" placeholder=\"(Ex. Bench Press)\" class=\"form-control\" id=\"exercise_".$i."\"/>";
 				echo "</div>  &nbsp; &nbsp;";
 
 				echo "<div class=\"form-group\">";
@@ -73,32 +76,38 @@ class Profile extends CI_Controller {
 
 
 	public function gatherExerciseFormData(){
-		
-		$username = $_SESSION['user_name'];
-		$num_exercises = $_SESSION['exercise_num'];
-		$exercises = array();
-		$repetitions = array();
-		$weights = array();
-	    $routine_name = $this->input->post('routine_name');
+				
+			$tags = $this->input->post('routine_tags');
 
-		for($i = 0 ; $i < $num_exercises; $i = $i + 1)
-		{
+			$username = $_SESSION['user_name'];
+			$num_exercises = $_SESSION['exercise_num'];
+			$exercises = array();
+			$repetitions = array();
+			$weights = array();
+		    $routine_name = $this->input->post('routine_name');
 
-			$exercises[$i] = $this ->input -> post('exercise_'.$i);
-			$repetitions[$i] = $this ->input->post('repetitions_'.$i);
-			$weights[$i] = $this ->input->post('weights_'.$i);
+			for($i = 0 ; $i < $num_exercises; $i = $i + 1)
+			{
 
-		}
+				$exercises[$i] = $this ->input -> post('exercise_'.$i);
+				$repetitions[$i] = $this ->input->post('repetitions_'.$i);
+				$weights[$i] = $this ->input->post('weights_'.$i);
 
-		//Create the workout routine first, then create the log.  the log inherits from routine db object. 
-		$this->load->model('workout_routine_model');
-		$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
+			}
+
+			//Create the workout routine first, then create the log.  the log inherits from routine db object. 
+			$this->load->model('workout_routine_model');
+			$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
 
 
+			$date_month = date('F');
+			$date_day = date('d');
+			$date_month = substr($date_month,0,3);
 
-		$this ->load->model('workout_log_model');
-		$this->workout_log_model->createNewLog($username,)
-
+			echo $tags;
+			$this ->load->model('workout_log_model');
+			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions);
+			echo "200";
 	}
 
 

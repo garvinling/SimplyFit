@@ -4,10 +4,23 @@
 ?>
  <link rel="stylesheet" type="text/css" href="http://garvinling.com/profile_view.css"/>
 
+
+
+
+<link href="http://garvinling.com/bootstrap/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
+<script src="http://garvinling.com/js/bootstrap-tagsinput.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+<script>
+
+
+</script>
+
 </head>
 
 <body>
-
 		<div id="header_bar">
 			<div class="row">
 
@@ -129,8 +142,7 @@
 								<div class="circle-text-strength" style="width:70px; margin-top:-13px; margin-left:12px;"><div><h3 id="code_indicator">S</h3></div></div>
 
 
-							</div>
-
+						</div>
 					</div>
 				</div><!-- End workout item -->
 
@@ -170,28 +182,26 @@
 				</select>
 				<br><br>
 
-
-
-
+				<input type="text" data-role="tagsinput" id="tags" name="tags"/>
 
 				<!-- specify the number of exercises user wishes to add -->
 	          	<h2>Create a new workout routine: </h2>
 
 	          		<? // be able to post routines and grab routines from others  GENERATE DYNAMICALLY FROM SERVER.  ?>
 	              <form class="form-inline" id="exercise_create_form">
-
-
+	              	
 	              	<div class="form-group" id="exercise_form_group">
 	               	<label for="exercise">How many exercises?</label>
 	                <input type="text" name="number_of_exercises" placeholder="(Enter # of exercises in this routine.)" class="form-control" id="number_of_exercises"/><br><br>
 	                <input type="submit" class = "btn btn-success btn-large input-block-level" id="exercise_add_button" value="Create"/>
 	               </div>
+	           
+
 	           </form>
 
 	           <br>
 	           <div id="exercise_form">
 		
-
 
 
 
