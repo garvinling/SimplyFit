@@ -182,7 +182,6 @@
 				</select>
 				<br><br>
 
-				<input type="text" data-role="tagsinput" id="tags" name="tags"/>
 
 				<!-- specify the number of exercises user wishes to add -->
 	          	<h2>Create a new workout routine: </h2>
@@ -199,15 +198,14 @@
 
 	           </form>
 
+		       <br><br>
+		       <div class="form-group" >
+		       <input type="text" data-role="tagsinput" id="tags" name="tags" style="width:900px;"/>
+		       </div>
+
 	           <br>
 	           <div id="exercise_form">
-		
-
-
-
-
-
-
+						
 
 
 				 <input type="submit" class = "btn btn-success btn-large input-block-level" id="create_workout_button" value="Creatsse" style="display:none;"/>
