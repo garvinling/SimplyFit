@@ -38,5 +38,24 @@
 
 
 
+
+		/**
+		* Function: gatherLogs()
+		* Param: $username the id_username to query
+		* Get all workout log objects from the db where id_username(db_column) == $username
+		*/
+		public function gatherLogs($username){
+
+			$q = $this -> db -> where('id_username',$username)->limit(10)->get('user_workouts_logs');	//Limit 10 for now.
+
+			if($q->num_rows > 0)
+			{
+				return $q ->result_array();
+			}
+
+		}
+
+
+
 	}
 ?>

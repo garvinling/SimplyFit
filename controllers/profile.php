@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
 
@@ -16,10 +16,13 @@ class Profile extends CI_Controller {
 	public function index()
 	{		
 
+	
+
 		if(isset($_SESSION['user_name']))
 		{
 			
 			$this->getExistingRoutines();
+			$this->buildLogList();
 			$this->load->view('workout/profile_view');  //Send in data through the second argument
 
 
@@ -109,6 +112,73 @@ class Profile extends CI_Controller {
 	}
 
 
+
+	public function buildLogList(){
+
+
+		$username = $_SESSION['user_name'];
+		$this->load->model('workout_log_model');
+
+		$result = $this->workout_log_model->gatherLogs($username); //LIMIT ?
+		
+
+		$this->createWorkoutItem($result);
+		//Explode repetitions and weight
+
+
+		//$tags = explode( ',', $result["tags"]);
+
+
+
+/*
+			  echo "<div id=\"workout_item\">":
+					
+					echo "<div class=\"row\">";
+						
+							echo "<div class=\"col-md-2\"id=\"item_date\">";
+
+								echo "<h2 id=\"date_month\">".$result["date_month"]."</h2>";
+								echo "<h1 id=\"date_day\">".$result["date_day"]."</h1>";
+							echo "</div>";
+
+							echo "<div class=\"col-md-4\"id=\"item_time_highlights\">";
+
+								echo "<h4 id=\"workout_time\">Elapsed time: --:--</h4>";
+								echo "<h4 id=\"workout_highlights_reps\">Best reps: <span id=\"highlight_text\">".$result["repetitions"]."</span></h4>";
+								echo "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$result["weight"]." lbs.</span></h4>
+							</div>";
+
+							echo "<div class=\"col-md-4\"id=\"item_workout_tags\">";
+
+
+								for($i = 0 ; $i < sizeof($tags); $i = $i + 1)
+								{
+
+									echo "<a href=\"#\"><code>".$tags[$i]."</code></a>";
+
+
+								}
+
+								
+
+							echo "</div>";
+
+						
+							echo "<div class=\"col-md-2\" id=\"item_workout_tags\">";
+
+								echo "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
+
+
+						echo "</div>
+					</div>
+				</div><!-- End workout item -->";
+
+*/
+
+	}
+
+
+
 	public function getExistingRoutines(){
 
 		$username = $_SESSION['user_name'];
@@ -118,8 +188,6 @@ class Profile extends CI_Controller {
 
 		$routine_names = array();
 		$routine_exercises = array();	
-
-
 
 		if($query !== false)
 		{		
@@ -144,12 +212,101 @@ class Profile extends CI_Controller {
 		{
 			return 404;
 		}
-
-
-
 	}
 
 
 
-}//end
+	public function createWorkoutItem($result){
+
+		$weight = array();
+		$repetitions = array();
+		$tags = array();
+		$workout_item = array( );
+
+		$_SESSION['workout_items_num'] = sizeof($result);  //Number of workout items to list
+
+		for($i = 0 ; $i < sizeof($result); $i = $i + 1)
+		{
+
+				$tags[$i]["tags"] = explode(',',$result[$i]["tags"]);	//Each index is an 
+				$repetitions[$i]["repetitions"] = explode(',',$result[$i]["repetitions"]);
+				$weight[$i]["weight"] = explode(',',$result[$i]["weight"]);
+				// Structure: 
+				// Tags --> item[i] --> array_of_tags[j];
+				// Access: $weight[i]["repetitions"][j];
+
+		}
+
+
+
+
+		/*
+		var_dump($tags);
+		echo "<br>";
+		var_dump($repetitions);
+		echo "<br>";
+		var_dump($weight);
+		*/
+
+for($i = 0; $i < sizeof($result) ; $i = $i + 1)
+{
+
+
+
+			  				$workout_item[$i][0] =  "<div id=\"workout_item\">";
+					
+							$workout_item[$i][1] =  "<div class=\"row\">";
+						
+							$workout_item[$i][2] =  "<div class=\"col-md-2\"id=\"item_date\">";
+							$workout_item[$i][3] =  "<h2 id=\"date_month\">".$result[$i]["date_month"]."</h2>";
+							$workout_item[$i][4] =  "<h1 id=\"date_day\">".$result[$i]["date_day"]."</h1>";
+							$workout_item[$i][5] =  "</div>";
+
+							$workout_item[$i][6] =  "<div class=\"col-md-4\"id=\"item_time_highlights\">";
+
+							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time: --:--</h4>";
+													
+
+							$max_reps = max($repetitions[$i]["repetitions"]);
+							$max_weight = max($weight[$i]["weight"]);
+
+							$workout_item[$i][8] =  "<h4 id=\"workout_highlights_reps\">Best reps: <span id=\"highlight_text\">".$max_reps."</span></h4>";
+												
+							$workout_item[$i][9] =  "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$max_weight." lbs.</span></h4></div>";
+
+
+
+
+							$workout_item[$i][10] =  "<div class=\"col-md-4\"id=\"item_workout_tags\">";
+
+								/*
+								for($k = 0 ; $k < sizeof($tags); $k = $k + 1)
+								{
+
+									$workout_item[$i][$k] =  "<a href=\"#\"><code>".$tags[$i]."</code></a>";
+
+
+								}*/
+
+
+							$workout_item[$i][11] =  "</div>";
+
+						
+							$workout_item[$i][12] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
+
+							$workout_item[$i][13] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
+
+
+							$workout_item[$i][14] =  "</div>
+					</div>
+				</div><!-- End workout item -->";
+	
+			}//end for loop
+
+			$_SESSION['workout_items'] = $workout_item;
+	}//end function
+
+
+
+}//end of class
 
