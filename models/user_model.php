@@ -22,7 +22,7 @@
 		*/ 
 		public function get($id,$pw){
 
-				$q = $this -> db -> where('email',$id)->where('password',sha1($pw))->limit(1)->get('users');
+				$q = $this -> db -> where('id_username',$id)->where('pw',sha1($pw))->limit(1)->get('user_table');
 
 				if($q->num_rows()>0){
 

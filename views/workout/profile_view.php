@@ -35,6 +35,7 @@
 						<li id="top_menu"><a href="#">Workouts</a></li>
 						<li id="top_menu"><a href="#">Schedule</a></li>
 						<li id="top_menu"><a href="#">Add Exercise</a></li>
+						<li id="top_menu"><a href="../workoutlogger/logout">Logout</li>
 					</ul>
 				</div>
 			</div>

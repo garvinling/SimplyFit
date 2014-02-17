@@ -113,17 +113,27 @@
       </div>
       <div class="modal-body">
 
+   
           <div class="register-form" align="center">
-          <?php echo form_open('welcome/addFriend');?>  
 
-          <input type="text" name="friend_email" id="friend_email" placeholder="Search E-mail" maxlength="20"style=" display:block;width:300px;background-color:#F6F6F6;font-family: 'Noto Sans', sans-serif; font-weight:300; height:24px; font-size:18px; text-align:center;"/>
-          <br>
-          <input type="submit" class = "btn btn-danger btn-large  input-block-level" style="width:310px; background-color:#DF314D;" value="Add Friend" style=""/>
-
-          <?php echo form_close(); ?>
+          <h1 id="register_title">Login</h1>
+          <br><br>
 
 
+              <form id="login_form">
+               
+               <div class="form-group">
+                <input type="text" name="existing_user_name" placeholder="Enter Username" class="form-control"/>
+               </div>
 
+              <div class="form-group">
+                <input type="password" name="existing_pw" placeholder="Password" class="form-control" id="user_pw_input"/>
+              </div>
+
+               <input type="submit" class = "btn btn-primary btn-large input-block-level" id="login_button" value="Login"/>
+
+
+              </form>
 
 
         </div>

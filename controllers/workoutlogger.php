@@ -31,7 +31,7 @@ class Workoutlogger extends CI_Controller {
 	public function validateUserName(){
 
 		$username =  $this->input->post('user_name');
-		$pw = $this ->input->post('pw_input');
+		$pw = sha1($this ->input->post('pw_input'));
 
 		$this->load->model('user_model');
 
@@ -53,7 +53,45 @@ class Workoutlogger extends CI_Controller {
 	}
 
 
+	public function login(){
 
+
+		$username = $this->input->post('existing_user_name');
+		$pw = $this->input->post('existing_pw');
+
+		$this->load->model('user_model');
+
+		$exists = $this->user_model->check_for_existing($username);
+
+
+
+		if($exists == true)
+		{
+				$result = $this->user_model->get($username,$pw);
+
+
+				if($result != false)
+				{
+					$_SESSION['user_name'] = $result->id_username;
+					echo "/profile/";
+					return;
+				}
+		}
+
+
+ 		echo "404";
+
+	}
+
+
+	public function logout(){
+
+		session_destroy();
+		redirect('workoutlogger');
+
+
+
+	}
 
 
 
