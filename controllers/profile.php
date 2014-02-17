@@ -121,12 +121,9 @@ class Profile extends CI_Controller {
 
 		$result = $this->workout_log_model->gatherLogs($username); //LIMIT ?
 		
-
 		$this->createWorkoutItem($result);
-		//Explode repetitions and weight
 
 
-		//$tags = explode( ',', $result["tags"]);
 
 
 
@@ -253,7 +250,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
-			  				$workout_item[$i][0] =  "<div id=\"workout_item\">";
+			  				$workout_item[$i][0] =  "<div id=\"workout_item_".$i."\">";
 					
 							$workout_item[$i][1] =  "<div class=\"row\">";
 						

@@ -106,7 +106,7 @@
 		<div id="dat_main_content_doe" style="color:black;">
 		
 			<div id="workout_item_list">
-
+				
 				  <div id="workout_item">
 					
 					<div class="row">
@@ -123,7 +123,6 @@
 								<h4 id="workout_highlights_reps">Best reps: <span id="highlight_text">12</span></h4>
 								<h4 id="workout_highlights_weight">Best weight: <span id="highlight_text">130 lbs.</span></h4>
 							</div>
-							<!-- FIRST -->
 
 							<div class="col-md-4"id="item_workout_tags">
 
@@ -145,7 +144,7 @@
 
 						</div>
 					</div>
-				</div><!-- End workout item -->
+				</div><!--<End workout item -->
 
 				<?
 
