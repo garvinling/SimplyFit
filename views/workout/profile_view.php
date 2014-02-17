@@ -35,7 +35,7 @@
 						<li id="top_menu"><a href="#">Workouts</a></li>
 						<li id="top_menu"><a href="#">Schedule</a></li>
 						<li id="top_menu"><a href="#">Add Exercise</a></li>
-						<li id="top_menu"><a href="../workoutlogger/logout">Logout</li>
+						<li id="top_menu"><a href="../workoutlogger/logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -50,7 +50,6 @@
 			</div>
 		</div>
 		<br><br>
-
 
 		<div class="row">
 			<div class="col-md-12" style="">
@@ -107,7 +106,7 @@
 		
 			<div id="workout_item_list">
 				
-				  <div id="workout_item">
+		<!--		  <div id="workout_item">
 					
 					<div class="row">
 						
@@ -144,7 +143,7 @@
 
 						</div>
 					</div>
-				</div><!--<End workout item -->
+				</div><End workout item -->
 
 				<?
 
@@ -254,7 +253,7 @@
 	           </form>
 
 
-	           <button id="test_button">TESTER</button>
+	           <!--<button id="test_button">TESTER</button>-->
 
 
 
