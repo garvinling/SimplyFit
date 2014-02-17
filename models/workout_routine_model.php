@@ -30,6 +30,33 @@
 		}
 
 
+		public function getRoutines($username){
+
+
+
+
+			$query = $this -> db -> where('id_username',$username)->get('user_workouts_routines');	//Should we set a limit here?
+
+
+
+			if($query -> num_rows > 0)
+			{
+
+				return $query -> result_array(); 
+
+			}
+
+
+			return false;
+
+
+		}
+
+
+
+
+
+
 
 	}
 ?>

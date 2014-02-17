@@ -174,15 +174,32 @@
 				
 	          	<h2>Choose an existing workout:</h2>
 				<select class="form-control" id="existing_workouts">
-				    <option value="one">One</option>
-				    <option value="two">Two</option>
-				    <option value="three">Three</option>
-				    <option value="four">Four</option>
-				    <option value="five">Five</option>
+				    
+
+
+
+	           <? if(isset($_SESSION['routine_names']))
+	           {	
+	           		for($i=0;$i<sizeof($_SESSION['routine_names']); $i=$i+1)
+	           		{
+
+	           			echo "<option value=\"".$_SESSION['routine_names'][$i]."\">".$_SESSION['routine_names'][$i]."</option>";
+
+
+
+	           		}
+	           }
+	           ?>
+				    
+				
+
+
 				</select>
 				<br><br>
+				<button id="create_new" class="btn btn-primary">Create New Routine</button>
+				<br><br>
 
-
+				<div id="existing_workout" style="display:none;">
 				<!-- specify the number of exercises user wishes to add -->
 	          	<h2>Create a new workout routine: </h2>
 
@@ -192,36 +209,43 @@
 	              	<div class="form-group" id="exercise_form_group">
 	               	<label for="exercise">How many exercises?</label>
 	                <input type="text" name="number_of_exercises" placeholder="(Enter # of exercises in this routine.)" class="form-control" id="number_of_exercises"/><br><br>
-	               </div>
+	                </div>
+	              
 	               <br>
 
-	               <div class="form-group">
-				<label for="exercise">Name your exercise:</label>
-				<input type="text" name="routine_name" placeholder="(Ex. Tricep Thursday)" class="form-control" id="routine_name"/>
-				</div>  <br>
-
-      		 <br>
+		           <div class="form-group">
+				   <label for="exercise">Name your exercise:</label>
+				   <input type="text" name="routine_name" placeholder="(Ex. Tricep Thursday)" class="form-control" id="routine_name"/>
+				   </div> 
+				   
+				   <br><br>
+			       
 			       <div class="form-group">
 			       <label for="tags">Enter tags:</label><br>
 			       <input type="text" data-role="tagsinput" id="tags" name="tags" class="form-control" placeholder="Separate tags by space"/>
 			       </div>
+			       
 			       <br><br>
 
-
-	           
 	                <input type="submit" class = "btn btn-success btn-large input-block-level" id="exercise_add_button" value="Create"/>
-	                <br>
+	              
+	               <br><br>
+
 	           </form>
+
+
+	           <button id="test_button">TESTER</button>
+
+
 
 		
 	           <div id="exercise_form">
 						
 
-
 				 <input type="submit" class = "btn btn-success btn-large input-block-level" id="create_workout_button" value="Creatsse" style="display:none;"/>
 	              </form>
         </div> <!-- end form-div -->
- 
+ </div>
 
 
 

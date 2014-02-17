@@ -108,7 +108,45 @@ class Profile extends CI_Controller {
 	}
 
 
+	public function getExistingRoutines(){
 
+		$username = $_SESSION['user_name'];
+		$this->load->model('workout_routine_model');
+		$query = $this->workout_routine_model->getRoutines($username);
+
+
+		$routine_names = array();
+		$routine_exercises = array();	
+
+
+
+		if($query !== false)
+		{		
+			
+
+				for($i=0;$i<sizeof($query);$i=$i+1){
+
+						$routine_names[$i] = $query[$i]["name_of_routine"];
+
+						$routine_exercises[$i] = $query[$i]["exercises"];
+					
+
+				}
+
+			$_SESSION['routine_names'] = $routine_names;
+			$_SESSION['exercises'] = $routine_exercises;
+
+
+			echo "200";
+		}
+		else
+		{
+			echo "FALSE";
+		}
+
+
+
+	}
 
 
 
