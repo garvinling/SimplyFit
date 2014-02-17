@@ -16,9 +16,10 @@ class Profile extends CI_Controller {
 	public function index()
 	{		
 
-		//$this->load->model('user_model');
 		if(isset($_SESSION['user_name']))
 		{
+			
+			$this->getExistingRoutines();
 			$this->load->view('workout/profile_view');  //Send in data through the second argument
 
 
@@ -127,7 +128,7 @@ class Profile extends CI_Controller {
 				for($i=0;$i<sizeof($query);$i=$i+1){
 
 						$routine_names[$i] = $query[$i]["name_of_routine"];
-
+       		
 						$routine_exercises[$i] = $query[$i]["exercises"];
 					
 
@@ -137,11 +138,11 @@ class Profile extends CI_Controller {
 			$_SESSION['exercises'] = $routine_exercises;
 
 
-			echo "200";
+			return 200;
 		}
 		else
 		{
-			echo "FALSE";
+			return 404;
 		}
 
 

@@ -175,24 +175,21 @@
 				
 	          	<h2>Choose an existing workout:</h2>
 				<select class="form-control" id="existing_workouts">
-				    
+
+
+					<? if(isset($_SESSION['routine_names']))
+					{
+						for($i = 0; $i < sizeof($_SESSION['routine_names']); $i = $i + 1)
+						{
+	           				echo "<option value=\"".$_SESSION['routine_names'][$i]."\">".$_SESSION['routine_names'][$i]."</option>";
 
 
 
-	           <? if(isset($_SESSION['routine_names']))
-	           {	
-	           		for($i=0;$i<sizeof($_SESSION['routine_names']); $i=$i+1)
-	           		{
+						}
 
-	           			echo "<option value=\"".$_SESSION['routine_names'][$i]."\">".$_SESSION['routine_names'][$i]."</option>";
+					}
+					?>
 
-
-
-	           		}
-	           }
-	           ?>
-				    
-				
 
 
 				</select>

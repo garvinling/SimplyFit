@@ -123,11 +123,11 @@
               <form id="login_form">
                
                <div class="form-group">
-                <input type="text" name="existing_user_name" placeholder="Enter Username" class="form-control"/>
+                <input type="text" name="existing_user_name" placeholder="Enter Username" class="form-control" id="existing_user_name"/>
                </div>
 
               <div class="form-group">
-                <input type="password" name="existing_pw" placeholder="Password" class="form-control" id="user_pw_input"/>
+                <input type="password" name="existing_pw" placeholder="Password" class="form-control" id="existing_pw"/>
               </div>
 
                <input type="submit" class = "btn btn-primary btn-large input-block-level" id="login_button" value="Login"/>
