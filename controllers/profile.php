@@ -220,9 +220,9 @@ class Profile extends CI_Controller {
 		$tags = array();
 		$workout_item = array();
 		$log_ids = array();
+		$routines = array();
 
 		$_SESSION['workout_items_num'] = sizeof($result);  //Number of workout items to list
-
 		for($i = 0 ; $i < sizeof($result); $i = $i + 1)
 		{
 				$log_ids[$i] = $result[$i]["id_log"];
@@ -232,13 +232,13 @@ class Profile extends CI_Controller {
 				$tags[$id]["tags"] = explode(',',$result[$i]["tags"]);	//Each index is an 
 				$repetitions[$id]["repetitions"] = explode(',',$result[$i]["repetitions"]);
 				$weight[$id]["weight"] = explode(',',$result[$i]["weight"]);
-				
+				$routines[$id]["routines"] = $result[$i]["name_of_routine"];
 
 				// Structure: 
 				// Tags --> item[i] --> array_of_tags[j];
 				// Access: $weight[i]["repetitions"][j];
-
 		}
+
 
 
 
@@ -307,7 +307,20 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 	}//end function
 
+	public function getWorkoutAnalysis(){
 
+		$id = $this->input->post('id_log');
+
+		//Get Routine exercises
+		$this->load->model('workout_routine_model'):
+		$this->workout_routine_model->getRoutineWorkouts($id);
+
+
+
+
+
+
+	}
 
 }//end of class
 

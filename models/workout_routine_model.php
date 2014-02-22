@@ -53,6 +53,16 @@
 		}
 
 
+		public function getRoutineWorkouts($id){
+
+
+			
+
+
+			
+		}
+
+
 
 
 
