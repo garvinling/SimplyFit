@@ -46,23 +46,13 @@
         <br><br>
         <div class = "row-fluid">
         <div class = "span12" id="personal_info">
-   <section id="rotating">
-            <section class="rw-wrapper">
-				<h2 class="rw-sentence">
-					<span>I'm</span>
-					<div class="rw-words rw-words-1">
-						<span>a Web Design Enthusiast</span>
-						<span>a Firmware Engineer</span>
-                        <span>a PHP Developer</span>
-						<span>an Android Developer</span>
-						<span>a Javascript aficionado</span>
-						<span>Garvin Ling</span>
 
-                    </div>
-				</h2>
-			</section>
-            </section>
-            <div style="margin-left:40px;">from Long Beach, CA</div><br>
+             I am a Web developer. <br>
+
+             <a href="workoutlogger">What I am currently working on. </a>
+
+            <br><br>            
+
             <address>
               <a href="mailto:garvin.ling@gmail.com">garvin.ling@gmail.com</a><br>
             </address>

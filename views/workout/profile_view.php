@@ -101,7 +101,6 @@
 
 
 
-
 		<div id="dat_main_content_doe" style="color:black;">
 		
 			<div id="workout_item_list">
@@ -138,19 +137,20 @@
 							<div class="col-md-2"id="item_workout_tags">
 
 								<div class="circle-text-strength" style="width:70px; margin-top:-13px; margin-left:12px;"><div><h3 id="code_indicator">S</h3></div></div>
-
+	
 
 						</div>
 					</div>
 				</div><End workout item -->
+	
 
 				<?
 				if(isset($_SESSION['workout_items']))
 				{
-					
-					echo "<a href=\"\" id=\"workout_item_click\"  data-toggle=\"modal\" data-target=\"#workoutItemModal\">";
+					//Use jQuery to store data for each row element. .data().
 					for($i = 0 ; $i < sizeof($_SESSION['workout_items']); $i = $i + 1)
 					{
+						echo "<a href=\"\" id=\"workout_item_click_ ".$i."\"  data-toggle=\"modal\" data-target=\"#workoutItemModal\">";
 
 							
 							for($j = 0;    $j < 15; $j = $j + 1)
@@ -159,9 +159,10 @@
 									echo $_SESSION['workout_items'][$i][$j];
 
 							}
+						echo "</a>";
+
 					}
 
-					echo "</a>";
 				}
 
 				?>
@@ -182,31 +183,46 @@
 
 
 <div class="modal fade" id="workoutItemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width:1000px;">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <div align="center"><h4 class="modal-title" id="myModalLabel" style="font-family:'Source Sans Pro', sans-serif; font-weight:700;">Add a Friend</h4></div>
-      </div>
+
       <div class="modal-body">
           <div class="register-form" align="center">
 
-          <h1 id="register_title">Details</h1>
+          <h1 id="register_title">Workout Summary</h1>
           <br><br>
 
+          	<!-- template for detailed display-->
+          	<h1 id="tester"></h1>
 
-              <form id="login_form">
-               
-               <div class="form-group">
-                <input type="text" name="existing_user_name" placeholder="Enter Username" class="form-control" id="existing_user_name"/>
-               </div>
 
-              <div class="form-group">
-                <input type="password" name="existing_pw" placeholder="Password" class="form-control" id="existing_pw"/>
-              </div>
+          	<div class="row">
 
-               <input type="submit" class = "btn btn-primary btn-large input-block-level" id="login_button" value="Login"/>
-              </form>
+          		<div class="col-md-6">
+          			          	<h1 id="tester">Details</h1>
+
+          		</div>
+
+
+          		<div class="col-md-6">
+          			          	<h1 id="tester">Analysis</h1>
+
+
+
+          		</div>
+
+
+          	</div>
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
       <div class="modal-footer">
@@ -290,10 +306,6 @@
 
 
 	           <!--<button id="test_button">TESTER</button>-->
-
-
-
-		
 	           <div id="exercise_form">
 						
 

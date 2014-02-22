@@ -121,7 +121,7 @@ class Profile extends CI_Controller {
 
 		$result = $this->workout_log_model->gatherLogs($username); //LIMIT ?
 		
-		$this->createWorkoutItem($result);
+		$this->createWorkoutItem($result);	
 
 
 
@@ -218,16 +218,22 @@ class Profile extends CI_Controller {
 		$weight = array();
 		$repetitions = array();
 		$tags = array();
-		$workout_item = array( );
+		$workout_item = array();
+		$log_ids = array();
 
 		$_SESSION['workout_items_num'] = sizeof($result);  //Number of workout items to list
 
 		for($i = 0 ; $i < sizeof($result); $i = $i + 1)
 		{
+				$log_ids[$i] = $result[$i]["id_log"];
 
-				$tags[$i]["tags"] = explode(',',$result[$i]["tags"]);	//Each index is an 
-				$repetitions[$i]["repetitions"] = explode(',',$result[$i]["repetitions"]);
-				$weight[$i]["weight"] = explode(',',$result[$i]["weight"]);
+				$id = $log_ids[$i];
+
+				$tags[$id]["tags"] = explode(',',$result[$i]["tags"]);	//Each index is an 
+				$repetitions[$id]["repetitions"] = explode(',',$result[$i]["repetitions"]);
+				$weight[$id]["weight"] = explode(',',$result[$i]["weight"]);
+				
+
 				// Structure: 
 				// Tags --> item[i] --> array_of_tags[j];
 				// Access: $weight[i]["repetitions"][j];
@@ -237,20 +243,16 @@ class Profile extends CI_Controller {
 
 
 
-		/*
-		var_dump($tags);
-		echo "<br>";
-		var_dump($repetitions);
-		echo "<br>";
-		var_dump($weight);
-		*/
 
 for($i = 0; $i < sizeof($result) ; $i = $i + 1)
-{
+{		
 
+				// Store {Routine Name(Or unique id) : Workouts/reps/weights data}
+				// Onclick: send id as key for lookup in array. 
 
+							$log_id = $log_ids[$i];
 
-			  				$workout_item[$i][0] =  "<div id=\"workout_item_".$i."\">";
+			  				$workout_item[$i][0] =  "<div id=\"workout_item_".$log_id."\">";
 					
 							$workout_item[$i][1] =  "<div class=\"row\">";
 						
@@ -263,16 +265,14 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time: --:--</h4>";
 													
-							$max_reps = max($repetitions[$i]["repetitions"]);
-							$max_weight = max($weight[$i]["weight"]);
+							$max_reps = max($repetitions[$log_id]["repetitions"]);
+							$max_weight = max($weight[$log_id]["weight"]);
 
 							$workout_item[$i][8] =  "<h4 id=\"workout_highlights_reps\">Best reps: <span id=\"highlight_text\">".$max_reps."</span></h4>";
 												
 							$workout_item[$i][9] =  "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$max_weight." lbs.</span></h4></div>";
 
 							$workout_item[$i][10] =  "<div class=\"col-md-4\"id=\"item_workout_tags\">";
-
-
 
 								/*
 								for($k = 0 ; $k < sizeof($tags); $k = $k + 1)
@@ -285,7 +285,6 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 							$workout_item[$i][11] =  "</div>";
-
 						
 							$workout_item[$i][12] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
 
@@ -298,7 +297,14 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 	
 			}//end for loop
 
+					//Cache arrays into session
+
 			$_SESSION['workout_items'] = $workout_item;
+			$_SESSION['tags']  = $tags;
+			$_SESSION['reps'] = $repetitions;
+			$_SESSION['weight'] = $weight;
+
+
 	}//end function
 
 
