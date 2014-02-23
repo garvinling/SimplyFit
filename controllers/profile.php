@@ -328,19 +328,19 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			return;
 		}
 
-
 				$exercises_string = $result -> exercises;
 				$exercises = explode(',',$exercises_string);
 
 				for($i = 0; $i < sizeof($exercises) ; $i = $i + 1)
 				{
 
-					echo "<h3>Workout: ".$exercises[$i]."</h3>";
-
+					echo "<h5>Workout: ".$exercises[$i]."</h5>";
+					echo "<h5>Reps:".$_SESSION['reps'][$id]["repetitions"][$i]."</h5>";
+					echo "<h5>Weight:".$_SESSION['weight'][$id]["weight"][$i]."</h5>";
+					echo "<br><br>";
 
 
 				}
-
 
 
 

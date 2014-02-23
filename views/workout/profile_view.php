@@ -11,12 +11,12 @@
 <script src="http://garvinling.com/js/bootstrap-tagsinput.js" type="text/javascript" charset="utf-8"></script>
 
 
+		<script type="text/javascript">
+
+    
+		</script>
 
 
-<script>
-
-
-</script>
 
 </head>
 
@@ -91,7 +91,7 @@
 
 
 		<div id="dat_main_content_doe" style="color:black;">
-		
+
 			<div id="workout_item_list">
 		<!--		  <div id="workout_item">
 					
@@ -189,29 +189,23 @@
 
           	<div class="row">
 
-          		<div class="col-md-6">
-          			    <h1 id="tester">Details</h1><br>
+          		<div class="col-md-3">
+          			    <h1 id="tester">Details</h1><br>	<?// HAVE ONLY THE DETAILS SIDE SCROLL. LEAVE RIGHT SIDE STATIC? OR SEPARATE SCROLL?>
 
           			   <div id="workout_details">
 
 
 
           			   </div>
-
-
-
-
-
           		</div>
 
 
-          		<div class="col-md-6">
-          			          	<h1 id="tester">Analysis</h1><br>
-
-
+          		<div class="col-md-9">
+          			  
+          			 <h1 id="tester">Analysis</h1><br>
+          			 <div id="graph_container" style="min-width: 600px; height: auto; margin: 0 auto"></div>
 
           		</div>
-
 
           	</div>
 
@@ -335,8 +329,10 @@
 
 <!-- jQuery/JavaScript Libraries --> 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://garvinling.com/bootstrap/js/bootstrap.js"></script>
-
+<script src="http://garvinling.com/Highcharts/js/highcharts.js"></script>
+<script src="http://garvinling.com/Highcharts/js/modules/exporting.js"></script>
 </body>
 
 </html>
