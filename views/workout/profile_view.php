@@ -205,6 +205,10 @@
           			 <h1 id="tester">Analysis</h1><br>
           			 <div id="graph_container" style="min-width: 600px; height: auto; margin: 0 auto"></div>
 
+          			 <br>
+          			 <br>
+          			 <h1> Your <strong>Bench Press</strong> repetitions increased by <span style="font-weight:bold; color:#e74c3c;">3 %</span></h1>
+
           		</div>
 
           	</div>
