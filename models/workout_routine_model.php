@@ -52,21 +52,40 @@
 
 		}
 
+		public function getRoutineWorkouts($id,$user){
 
-		public function getRoutineWorkouts($id){
+				$nameOfRoutine="";
+
+				$routineName_Query = $this -> db -> where('id_username',$user)->where('id_log',$id)->limit(1)->get('user_workouts_logs');
+
+				if($routineName_Query -> num_rows > 0)
+				{
+					$nameOfRoutine = $routineName_Query -> row() -> name_of_routine;
+
+				}
 
 
-			
 
 
-			
+
+				$query = $this -> db -> where('id_username',$user)->where('name_of_routine',$nameOfRoutine)->limit(1)->get('user_workouts_routines');
+
+				if($query -> num_rows > 0)
+				{
+					return $query -> row();
+				}
+
+				return false;
+
+
+
+
+
+
 		}
 
 
 
 
 
-
-
 	}
-?>

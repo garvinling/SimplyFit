@@ -81,20 +81,9 @@
 					<li><div class="circle-text-strength" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">S</h1></div></div></li>
 					<br>
 					<li><div class="circle-text" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">C</h1></div></div></li>
-
-
 				</ul>
-
-
-
-
 			</div>
 		</div>
-
-
-
-
-
 	</div><!--end side thang-->
 
 
@@ -150,7 +139,9 @@
 					//Use jQuery to store data for each row element. .data().
 					for($i = 0 ; $i < sizeof($_SESSION['workout_items']); $i = $i + 1)
 					{
-						echo "<a href=\"\" id=\"workout_item_click_ ".$i."\"  data-toggle=\"modal\" data-target=\"#workoutItemModal\">";
+
+						$log_id = $_SESSION['log_id'][$i];
+						echo "<a href=\"\" id=\"workout_item_click_ ".$log_id."\"  data-toggle=\"modal\" data-target=\"#workoutItemModal\">";
 
 							
 							for($j = 0;    $j < 15; $j = $j + 1)
@@ -199,13 +190,23 @@
           	<div class="row">
 
           		<div class="col-md-6">
-          			          	<h1 id="tester">Details</h1>
+          			    <h1 id="tester">Details</h1><br>
+
+          			   <div id="workout_details">
+
+
+
+          			   </div>
+
+
+
+
 
           		</div>
 
 
           		<div class="col-md-6">
-          			          	<h1 id="tester">Analysis</h1>
+          			          	<h1 id="tester">Analysis</h1><br>
 
 
 

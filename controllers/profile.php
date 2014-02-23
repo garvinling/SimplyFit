@@ -251,7 +251,6 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 				// Onclick: send id as key for lookup in array. 
 
 							$log_id = $log_ids[$i];
-
 			  				$workout_item[$i][0] =  "<div id=\"workout_item_".$log_id."\">";
 					
 							$workout_item[$i][1] =  "<div class=\"row\">";
@@ -303,24 +302,82 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			$_SESSION['tags']  = $tags;
 			$_SESSION['reps'] = $repetitions;
 			$_SESSION['weight'] = $weight;
+			$_SESSION['log_id'] = $log_ids;
 
 
 	}//end function
 
-	public function getWorkoutAnalysis(){
 
+
+
+
+
+	public function getWorkoutAnalysis(){
+		
+		$exercises = array();
+		$username = $_SESSION['user_name'];
+		$this->load->model('workout_routine_model');
 		$id = $this->input->post('id_log');
 
-		//Get Routine exercises
-		$this->load->model('workout_routine_model'):
-		$this->workout_routine_model->getRoutineWorkouts($id);
+		//Get Routine exercises	by name of routine and username  
+		$result = $this->workout_routine_model->getRoutineWorkouts($id,$username);
+
+		if($result == false)
+		{
+			echo "404: Data not found.";
+			return;
+		}
 
 
+				$exercises_string = $result -> exercises;
+				$exercises = explode(',',$exercises_string);
+
+				for($i = 0; $i < sizeof($exercises) ; $i = $i + 1)
+				{
+
+					echo "<h3>Workout: ".$exercises[$i]."</h3>";
+
+
+
+				}
+
+
+
+
+				//$exercises[$id]["tags"] = explode(',', );
 
 
 
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }//end of class
 
