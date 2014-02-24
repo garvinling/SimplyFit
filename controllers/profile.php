@@ -479,7 +479,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 				if($prev_log_id != null)
 				{
-					$this -> compareReps(sizeof($exercises),$prev_log_id,$id);
+					$this -> compareData($exercises,$prev_log_id,$id);
 
 				}
 
@@ -488,28 +488,40 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
-	public function compareReps($size,$prev_id,$current_id){
+	public function compareData($exercises,$prev_id,$current_id){
 
 		//Comparing $_SESSION['reps'][$prev_log_id][$index] to $_SESSION['reps']['$id'][$index];
 		//Set results in $_SESSION['analysis']
+		$size = sizeof($exercises);
+
 
 		$analysis = array();    //array to store all analysis messages
 
 		for($i=0;$i<$size;$i=$i+1)
 		{
-			$prev = $_SESSION['reps'][$prev_id]["repetitions"][$i];
-			$curr = $_SESSION['reps'][$current_id]["repetitions"][$i];
+			$prev_rep = $_SESSION['reps'][$prev_id]["repetitions"][$i];
+			$curr_rep = $_SESSION['reps'][$current_id]["repetitions"][$i];
+			$prev_weight = $_SESSION['weight'][$prev_id]["weight"][$i];
+			$curr_weight = $_SESSION['weight'][$current_id]["weight"][$i];
+			
 
-			if($curr == $prev)
+			if($curr_rep > $prev_rep)
 			{
 
-				echo "Exercise increased by no amount";
+				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> repetitions increased by <span style=\"font-weight:bold; color:#e74c3c;\">3 %</span></h1>";
+							echo $analysis[$i];
 
 			}
 
+			if($curr_weight > $prev_weight)
+			{
 
+				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">3 %</span></h1>";
+				echo $analysis[$i];
 
+			}
 		}
+		$_SESSION['analysis'] = $analysis;
 
 
 
