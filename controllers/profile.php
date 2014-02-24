@@ -515,9 +515,9 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 			if($curr_weight > $prev_weight)
 			{
-
-				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">3 %</span></h1>";
-				echo $analysis[$i];
+				$percentage = $this->calculatePercentage($prev_weight,$curr_weight);
+				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h1>";
+							echo $analysis[$i];
 
 			}
 		}
@@ -531,17 +531,21 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
-	public function compareWeight(){
+	public function calculatePercentage($starting,$current){
+
+			$total = $current - $starting; 
+
+			$total = $total / $starting; 
+
+			$total = $total * 100; 
+
+			return round($total);	//return rounded total
+
 
 
 
 	}
 
-
-	public function compareTime(){
-		//Add support for cardio/running/mile times.
-
-	}
 
 
 
