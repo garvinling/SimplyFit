@@ -52,6 +52,11 @@
 
 		}
 
+
+
+		/*
+			Retrieves the workouts contained in the selected workout log. (Defined by log_id and username)
+		*/	
 		public function getRoutineWorkouts($id,$user){
 
 				$nameOfRoutine="";

@@ -56,5 +56,37 @@
 		}
 
 
+		/**
+		* Function: getLastMatchingWorkoutObject($routine_name)
+		* Param: $routine_name 
+		* Get the last workout log tagged with the current selected routine name
+		*/
+		public function getLastMatchingWorkoutObject($username,$routine_name){
+
+			$matching_logs = array();
+			$routine_name = strtolower($routine_name);
+			$q = $this -> db -> where('id_username',$username)->where('name_of_routine',$routine_name)->get('user_workouts_logs');
+
+			if($q -> num_rows > 0)
+			{
+				return $q -> result_array();
+			}
+
+			return false;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	}

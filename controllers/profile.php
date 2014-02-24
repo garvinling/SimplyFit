@@ -134,11 +134,6 @@ class Profile extends CI_Controller {
 			echo "<input type=\"submit\" id=\"create_existing_workout_button\" class=\"btn btn-primary\" value=\"Submit\"/>";
 
 		}//end if
-
-
-
-
-
 	}
 
 
@@ -330,7 +325,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 							$workout_item[$i][6] =  "<div class=\"col-md-4\"id=\"item_time_highlights\">";
 
-							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time: ".$routines[$log_id]["routines"]."</h4>";
+							$workout_item[$i][7] =  "<h4 id=\"workout_routine\">Routine Name: ".$routines[$log_id]["routines"]."</h4>";
 													
 							$max_reps = max($repetitions[$log_id]["repetitions"]);
 							$max_weight = max($weight[$log_id]["weight"]);
@@ -378,16 +373,26 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
+	/*
+		getWorkoutAnalysis()
+		
+		Analyze user's workout data. 
 
+		-Compare to previous x amount of same workout routines.
+
+
+	*/
 
 	public function getWorkoutAnalysis(){
 		
 		$exercises = array();
 		$username = $_SESSION['user_name'];
 		$this->load->model('workout_routine_model');
+		$this->load->model('workout_log_model');
 		$id = $this->input->post('id_log');
 
 		//Get Routine exercises	by name of routine and username  
+		/*
 		$result = $this->workout_routine_model->getRoutineWorkouts($id,$username);
 
 		if($result == false)
@@ -395,7 +400,12 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			echo "404: Data not found.";
 			return;
 		}
+		*/
 
+				$result = $this -> getRoutineWorkouts($id,$username);
+
+				$routine_name = $result -> name_of_routine;
+				//Output workout to the details section.
 				$exercises_string = $result -> exercises;
 				$exercises = explode(',',$exercises_string);
 
@@ -407,13 +417,99 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 					echo "<h5>Weight:".$_SESSION['weight'][$id]["weight"][$i]."</h5>";
 					echo "<br><br>";
 
+				}
+	}
 
+
+
+	public function getRoutineWorkouts($id,$username){
+		
+		$result = $this->workout_routine_model->getRoutineWorkouts($id,$username);
+
+		if($result == false)
+		{
+			return false;
+		}
+
+		return $result;
+
+
+
+	}
+
+	public function getRoutineComparison(){
+		
+		$prev_log_id = null;
+		$username = $_SESSION['user_name'];
+		$this->load->model('workout_routine_model');
+		$this->load->model('workout_log_model');
+		$id = $this->input->post('id_log');
+
+
+				$result = $this->getRoutineWorkouts($id,$username);		
+				$routine_name = $result-> name_of_routine;	
+				$exercises_string = $result -> exercises;
+				$exercises = explode(',',$exercises_string);
+
+				//Get last workout log with the same routine name for comparison
+				$result_workout_previous = $this->workout_log_model->getLastMatchingWorkoutObject($username,$routine_name);
+
+				if($result_workout_previous == false)
+				{
+					echo "404: previous routine not found";
+					return;
 				}
 
 
+				//Find the last workout that isnt the current one.  Get that log_id and use it as the key in the SESSION arrays that hold reps/weights
 
-				//$exercises[$id]["tags"] = explode(',', );
 
+				for($i = 0; $i < sizeof($result_workout_previous) ; $i = $i + 1)
+				{
+						
+
+						if($id == $result_workout_previous[$i]["id_log"])	//Check if the id log of the row is our current selected ID.  Exit loop.
+						{
+							break;
+						}
+
+						$prev_log_id = $result_workout_previous[$i]["id_log"];
+
+				}
+
+				if($prev_log_id != null)
+				{
+					$this -> compareReps(sizeof($exercises),$prev_log_id,$id);
+
+				}
+
+	}
+
+
+
+
+	public function compareReps($size,$prev_id,$current_id){
+
+		//Comparing $_SESSION['reps'][$prev_log_id][$index] to $_SESSION['reps']['$id'][$index];
+		//Set results in $_SESSION['analysis']
+
+		$analysis = array();    //array to store all analysis messages
+
+		for($i=0;$i<$size;$i=$i+1)
+		{
+			$prev = $_SESSION['reps'][$prev_id]["repetitions"][$i];
+			$curr = $_SESSION['reps'][$current_id]["repetitions"][$i];
+
+			if($curr == $prev)
+			{
+
+				echo "Exercise increased by no amount";
+
+			}
+
+
+
+		}
 
 
 
@@ -423,17 +519,17 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
+	public function compareWeight(){
 
 
 
+	}
 
 
+	public function compareTime(){
+		//Add support for cardio/running/mile times.
 
-
-
-
-
-
+	}
 
 
 
