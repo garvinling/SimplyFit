@@ -16,6 +16,7 @@
     
 		</script>
 
+<title>SimplyFit</title>
 
 
 </head>

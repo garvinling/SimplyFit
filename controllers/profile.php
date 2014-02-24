@@ -262,7 +262,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 							$workout_item[$i][6] =  "<div class=\"col-md-4\"id=\"item_time_highlights\">";
 
-							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time: --:--</h4>";
+							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time:".$routines[$log_id]["routines"]."</h4>";
 													
 							$max_reps = max($repetitions[$log_id]["repetitions"]);
 							$max_weight = max($weight[$log_id]["weight"]);

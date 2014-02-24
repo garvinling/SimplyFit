@@ -65,9 +65,6 @@
 				}
 
 
-
-
-
 				$query = $this -> db -> where('id_username',$user)->where('name_of_routine',$nameOfRoutine)->limit(1)->get('user_workouts_routines');
 
 				if($query -> num_rows > 0)
@@ -76,10 +73,6 @@
 				}
 
 				return false;
-
-
-
-
 
 
 		}
