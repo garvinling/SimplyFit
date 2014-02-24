@@ -36,6 +36,32 @@ class Profile extends CI_Controller {
 	}
 
 
+
+
+
+	public function generateFormFromExistingRoutine(){
+
+			$exercises = array();
+			$routine_name = $this->input->post('name_of_routine');
+			$this->load->model('workout_routine_model');
+
+			//Get Routine from db and get number of get number of exercises in the routine. 
+			$results = $this->workout_routine_model->getNumOfExercises($routine_name);
+
+			if($results == false)
+			{
+				echo "404";
+				return;
+			}
+
+			$exercise_string = $results-> exercises;
+			$exercises = explode(',', $exercise_string);
+			$num_of_exercises = sizeof($exercises);
+			$this->generateExistingWorkoutInputForm($exercises);	//Generate the input form and send to client.
+	}
+
+
+
 	public function generateExerciseInputForm(){
 
 
@@ -46,9 +72,6 @@ class Profile extends CI_Controller {
 			$_SESSION['exercise_num'] = $num_exercises;
 			echo "<form class=\"form-inline\" id=\"new_exercise_form\">";
 				
-
-
-
 
 			for($i = 0 ; $i < $num_exercises; $i++)
 			{
@@ -72,20 +95,65 @@ class Profile extends CI_Controller {
 			echo "<input type=\"submit\" id=\"create_workout_button\" class=\"btn btn-primary\" value=\"Submit\"/>";
 
 		}//end if
+
 	}//end generateExerciseInputForm
 
+
+	private function generateExistingWorkoutInputForm($exercises){
+
+		$num_of_exercises = sizeof($exercises);
+
+
+		if($num_of_exercises > 0)
+		{
+			
+			$_SESSION['exercise_num'] = $num_of_exercises;
+
+			echo "<form class=\"form-inline\" id=\"existing_exercise_form\">";
+				
+
+			for($i = 0 ; $i < $num_of_exercises; $i++)
+			{
+				echo "<div class=\"form-group\">";
+				echo "<label for=\"exercise\">Exercise:</label>";
+				echo "<input type=\"text\" name=\"exercise_".$i."\" placeholder=\"(Ex. Bench Press)\" class=\"form-control\" id=\"exercise_".$i."\"  value=\"".$exercises[$i]."\" readonly/>";
+				echo "</div>  &nbsp; &nbsp;";
+
+				echo "<div class=\"form-group\">";
+				echo "<label for=\"repetitions\">Repetitions:</label>";
+				echo "<input type=\"text\" name=\"repetitions_".$i."\" placeholder=\"(Ex. 12)\" class=\"form-control\" id=\"repetitions_".$i."\">";
+				echo "</div> &nbsp; &nbsp;";
+
+
+				echo "<div class=\"form-group\">";
+				echo "<label for=\"exercise\">Weights:</label>";
+				echo "<input type=\"text\" name=\"weights_".$i."\" placeholder=\"(Ex. 180)\" class=\"form-control\" id=\"weights_".$i."\">";
+				echo "</div><br><br>";
+
+			}
+			echo "<input type=\"submit\" id=\"create_existing_workout_button\" class=\"btn btn-primary\" value=\"Submit\"/>";
+
+		}//end if
+
+
+
+
+
+	}
 
 
 	public function gatherExerciseFormData(){
 				
-			$tags = $this->input->post('routine_tags');
+			$tags = $this->input->post('existing_routine_tags');
 
 			$username = $_SESSION['user_name'];
 			$num_exercises = $_SESSION['exercise_num'];
 			$exercises = array();
 			$repetitions = array();
 			$weights = array();
-		    $routine_name = $this->input->post('routine_name');
+		    $routine_name = $this->input->post('existing_routine_name');
+
+		    $routine_name = ucfirst($routine_name);
 
 			for($i = 0 ; $i < $num_exercises; $i = $i + 1)
 			{
@@ -262,7 +330,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 							$workout_item[$i][6] =  "<div class=\"col-md-4\"id=\"item_time_highlights\">";
 
-							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time:".$routines[$log_id]["routines"]."</h4>";
+							$workout_item[$i][7] =  "<h4 id=\"workout_time\">Elapsed time: ".$routines[$log_id]["routines"]."</h4>";
 													
 							$max_reps = max($repetitions[$log_id]["repetitions"]);
 							$max_weight = max($weight[$log_id]["weight"]);

@@ -241,12 +241,12 @@
   <div class="modal-dialog" style="width:1000px;">
     <div class="modal-content" style="border-radius:0px;">
       <div class="modal-body">
-          <div class="register-form">
-	          
+          <div class="register-form"> 
 	          <h1 id="register_title">Record a workout</h1>
 	          <br><br>
-				
+
 	          	<h2>Choose an existing workout:</h2>
+				
 				<select class="form-control" id="existing_workouts">
 
 
@@ -266,6 +266,39 @@
 
 
 				</select>
+				<br>
+				<button id="use_existing" class="btn btn-success">Use Existing</button>
+
+				<br><br>
+
+				<div id="existing_routine_tags" style="display:none;">
+	          		<h2>Using routine: </h2>
+
+			 	   <label for="tags">Enter tags:</label><br>
+			       <input type="text" data-role="tagsinput" id="tags_existing" name="tags" class="form-control" placeholder="Separate tags by space"/>
+			    </div>
+
+				<div id="existing_routine" style="display:none;">
+			
+
+
+
+
+				 </div>
+
+
+				<br>
+				
+
+
+
+
+				<h3>-OR-</h3>
+				
+
+
+
+
 				<br><br>
 				<button id="create_new" class="btn btn-primary">Create New Routine</button>
 				<br><br>

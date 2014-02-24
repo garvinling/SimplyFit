@@ -78,6 +78,28 @@
 		}
 
 
+		public function getNumOfExercises($routine_name){
+
+			$query = $this-> db -> where('name_of_routine',$routine_name)->limit(1)->get('user_workouts_routines');
+
+			if($query -> num_rows > 0)
+			{
+				return $query->row();
+			}
+
+			return false;
+
+		}
+
+
+
+
+
+
+
+
+
+
 
 
 
