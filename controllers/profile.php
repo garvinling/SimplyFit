@@ -478,9 +478,10 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 				}
 
 				if($prev_log_id != null)
-				{
+				{	
+					$_SESSION['curr_workout_id'] = $id;
+					$_SESSION['prev_workout_id'] = $prev_log_id;
 					$this -> compareData($exercises,$prev_log_id,$id);
-
 				}
 
 	}
@@ -493,7 +494,6 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 		//Comparing $_SESSION['reps'][$prev_log_id][$index] to $_SESSION['reps']['$id'][$index];
 		//Set results in $_SESSION['analysis']
 		$size = sizeof($exercises);
-
 
 		$analysis = array();    //array to store all analysis messages
 
@@ -508,8 +508,10 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			if($curr_rep > $prev_rep)
 			{
 
-				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> repetitions increased by <span style=\"font-weight:bold; color:#e74c3c;\">3 %</span></h1>";
-							echo $analysis[$i];
+				$percentage = $this->calculatePercentage($prev_rep,$curr_rep);
+
+				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> repetitions increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h1>";
+				echo $analysis[$i];
 
 			}
 
@@ -517,18 +519,107 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			{
 				$percentage = $this->calculatePercentage($prev_weight,$curr_weight);
 				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h1>";
-							echo $analysis[$i];
+				echo $analysis[$i];
 
 			}
 		}
+	
+
 		$_SESSION['analysis'] = $analysis;
-
-
 
 	}
 
 
+	public function getGraphData(){
 
+		$new_weight_string = "";
+		$new_reps_string = "";
+		$old_weight_string = "";
+		$old_reps_string = "";
+
+		$size = sizeof($_SESSION['reps'][$_SESSION['prev_workout_id']]["repetitions"]);
+		$prev_id = $_SESSION['prev_workout_id'];
+		$current_id = $this -> input -> post('id_log');
+
+		for($i=0;$i<$size;$i=$i+1)
+		{	
+			$prev_rep = $_SESSION['reps'][$prev_id]["repetitions"][$i];
+			$curr_rep = $_SESSION['reps'][$current_id]["repetitions"][$i];
+			$prev_weight = $_SESSION['weight'][$prev_id]["weight"][$i];
+			$curr_weight = $_SESSION['weight'][$current_id]["weight"][$i];
+
+			$old_reps_string = $old_reps_string.$prev_rep.",";
+			$new_reps_string = $new_reps_string.$curr_rep.",";
+
+			$old_weight_string = $old_weight_string.$prev_weight.",";
+			$new_weight_string = $new_weight_string.$curr_weight.",";
+
+		}
+		$new_reps_string = $old_reps_string.$new_reps_string;
+		$new_weight_string = $old_weight_string.$new_weight_string;
+
+		$old_reps_string = substr($old_reps_string, 0, -1);
+		$new_reps_string = substr($new_reps_string,0,-1);
+		$old_weight_string = substr($old_weight_string, 0, -1);
+		$new_weight_string = substr($new_weight_string,0,-1);
+
+				
+		$data_old_reps = explode( ',', $old_reps_string);
+		$data_new_reps = explode( ',', $new_reps_string);
+		$data_old_weight = explode(',', $old_weight_string);
+		$data_new_weight = explode(',', $new_weight_string);
+
+
+		
+
+
+		array_walk( $data_old_reps, 'intval' );
+	    array_walk( $data_new_reps, 'intval' );
+		array_walk( $data_old_weight, 'intval' );
+	    array_walk( $data_new_weight, 'intval' );
+
+		foreach ($data_old_reps as $key => $var) {
+		    $data_old_reps[$key] = (int)$var;
+		   
+		}
+
+		foreach ($data_new_reps as $key => $var) {
+		    
+		    $data_new_reps[$key] = (int)$var;
+		   	
+
+		}
+
+		foreach ($data_old_weight as $key => $var) {
+	   	
+		    $data_old_weight[$key] = (int)$var;
+
+		}
+
+		foreach ($data_new_weight as $key => $var) {
+		 
+		   	
+		   	$data_new_weight[$key] = (int)$var;
+
+		}
+
+//Change the gather function to gather ALL previous not just the last one
+
+
+
+		$Response = array( 'NewReps' => $data_new_reps,'NewWeight'=>$data_new_weight);
+		echo json_encode($Response);
+
+
+
+
+		//echo "Old Reps:".$old_reps_string; 
+		//echo "<br>";
+		//echo "New Reps:".$new_reps_string;
+
+
+
+	}
 
 
 	public function calculatePercentage($starting,$current){
