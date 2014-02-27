@@ -137,16 +137,55 @@ class Profile extends CI_Controller {
 	}
 
 
-	public function gatherExerciseFormData(){
+	public function gatherExistingExerciseFormData(){
 				
 			$tags = $this->input->post('existing_routine_tags');
-
 			$username = $_SESSION['user_name'];
 			$num_exercises = $_SESSION['exercise_num'];
 			$exercises = array();
 			$repetitions = array();
 			$weights = array();
 		    $routine_name = $this->input->post('existing_routine_name');
+
+
+
+		    $routine_name = ucfirst($routine_name);
+
+			for($i = 0 ; $i < $num_exercises; $i = $i + 1)
+			{
+
+				$exercises[$i] = $this ->input -> post('exercise_'.$i);
+				$repetitions[$i] = $this ->input->post('repetitions_'.$i);
+				$weights[$i] = $this ->input->post('weights_'.$i);
+
+			}
+
+			//Create the workout routine first, then create the log.  the log inherits from routine db object. 
+			$this->load->model('workout_routine_model');
+			$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
+
+
+			$date_month = date('F');
+			$date_day = date('d');
+			$date_month = substr($date_month,0,3);
+
+			echo $tags;
+			$this ->load->model('workout_log_model');
+			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags);
+			echo "200";
+	}
+
+	public function gatherExerciseFormData(){
+				
+			$tags = $this->input->post('routine_tags');
+			$username = $_SESSION['user_name'];
+			$num_exercises = $_SESSION['exercise_num'];
+			$exercises = array();
+			$repetitions = array();
+			$weights = array();
+		    $routine_name = $this->input->post('routine_name');
+
+
 
 		    $routine_name = ucfirst($routine_name);
 
@@ -185,55 +224,6 @@ class Profile extends CI_Controller {
 		$result = $this->workout_log_model->gatherLogs($username); //LIMIT ?
 		
 		$this->createWorkoutItem($result);	
-
-
-
-
-
-/*
-			  echo "<div id=\"workout_item\">":
-					
-					echo "<div class=\"row\">";
-						
-							echo "<div class=\"col-md-2\"id=\"item_date\">";
-
-								echo "<h2 id=\"date_month\">".$result["date_month"]."</h2>";
-								echo "<h1 id=\"date_day\">".$result["date_day"]."</h1>";
-							echo "</div>";
-
-							echo "<div class=\"col-md-4\"id=\"item_time_highlights\">";
-
-								echo "<h4 id=\"workout_time\">Elapsed time: --:--</h4>";
-								echo "<h4 id=\"workout_highlights_reps\">Best reps: <span id=\"highlight_text\">".$result["repetitions"]."</span></h4>";
-								echo "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$result["weight"]." lbs.</span></h4>
-							</div>";
-
-							echo "<div class=\"col-md-4\"id=\"item_workout_tags\">";
-
-
-								for($i = 0 ; $i < sizeof($tags); $i = $i + 1)
-								{
-
-									echo "<a href=\"#\"><code>".$tags[$i]."</code></a>";
-
-
-								}
-
-								
-
-							echo "</div>";
-
-						
-							echo "<div class=\"col-md-2\" id=\"item_workout_tags\">";
-
-								echo "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
-
-
-						echo "</div>
-					</div>
-				</div><!-- End workout item -->";
-
-*/
 
 	}
 
@@ -305,7 +295,7 @@ class Profile extends CI_Controller {
 
 
 
-
+var_dump($tags);
 
 for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 {		
@@ -334,26 +324,23 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 												
 							$workout_item[$i][9] =  "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$max_weight." lbs.</span></h4></div>";
 
-							$workout_item[$i][10] =  "<div class=\"col-md-4\"id=\"item_workout_tags\">";
+							$workout_item[$i][10] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
 
-								/*
-								for($k = 0 ; $k < sizeof($tags); $k = $k + 1)
+								
+								for($k = 0 ; $k < sizeof($tags[$log_id]["tags"]); $k = $k + 1)
 								{
+									$workout_item[$i][$k+11] =  "<a href=\"#\"><code>".$tags[$log_id]["tags"][$k]."</code></a>";
+									$j = $k+12;
+								}
 
-									$workout_item[$i][$k] =  "<a href=\"#\"><code>".$tags[$i]."</code></a>";
-
-
-								}*/
-
-
-							$workout_item[$i][11] =  "</div>";
+							$workout_item[$i][$j] =  "</div>";
 						
-							$workout_item[$i][12] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
+							$workout_item[$i][$j+1] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
 
-							$workout_item[$i][13] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
+							$workout_item[$i][$j+2] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
 
 
-							$workout_item[$i][14] =  "</div>
+							$workout_item[$i][$j+3] =  "</div>
 					</div>
 				</div><!-- End workout item -->";
 	
@@ -391,17 +378,6 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 		$this->load->model('workout_log_model');
 		$id = $this->input->post('id_log');
 
-		//Get Routine exercises	by name of routine and username  
-		/*
-		$result = $this->workout_routine_model->getRoutineWorkouts($id,$username);
-
-		if($result == false)
-		{
-			echo "404: Data not found.";
-			return;
-		}
-		*/
-
 				$result = $this -> getRoutineWorkouts($id,$username);
 
 				$routine_name = $result -> name_of_routine;
@@ -412,10 +388,14 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 				for($i = 0; $i < sizeof($exercises) ; $i = $i + 1)
 				{
 
-					echo "<h5>Workout: ".$exercises[$i]."</h5>";
+					echo "<div id=\"exercise_graph_".$i."\" style=\"padding-top:20px;\">";
+					echo "<a href=\"#\">";
+					echo "<h3 style=\"font-weight:300;\">".$exercises[$i]."</h3>";
 					echo "<h5>Reps:".$_SESSION['reps'][$id]["repetitions"][$i]."</h5>";
 					echo "<h5>Weight:".$_SESSION['weight'][$id]["weight"][$i]."</h5>";
 					echo "<br><br>";
+					echo "</a>";
+					echo "</div>";
 
 				}
 	}

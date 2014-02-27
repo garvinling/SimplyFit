@@ -75,7 +75,7 @@
 							circle-text
 						 */ 
 					?>
-					<li><div class="circle-text-HIIT" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">H</h1></div></div></li>
+					<li><div class="circle-text-HIIT" class="rotate" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">H</h1></div></div></li>
 					<br>
 					<li><div class="circle-text-cross" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">X</h1></div></div></li>
 					<br>
@@ -136,16 +136,15 @@
 
 				<?
 				if(isset($_SESSION['workout_items']))
-				{
+				{	
+
 					//Use jQuery to store data for each row element. .data().
 					for($i = 0 ; $i < sizeof($_SESSION['workout_items']); $i = $i + 1)
 					{
-
 						$log_id = $_SESSION['log_id'][$i];
 						echo "<a href=\"\" id=\"workout_item_click_ ".$log_id."\"  data-toggle=\"modal\" data-target=\"#workoutItemModal\">";
 
-							
-							for($j = 0;    $j < 15; $j = $j + 1)
+							for($j = 0;    $j < sizeof($_SESSION['workout_items'][$i]); $j = $j + 1)
 							{
 
 									echo $_SESSION['workout_items'][$i][$j];
