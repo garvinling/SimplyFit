@@ -424,6 +424,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 	public function getRoutineWorkouts($id,$username){
 		
+		$this->load->model('workout_routine_model');
 		$result = $this->workout_routine_model->getRoutineWorkouts($id,$username);
 
 		if($result == false)
@@ -440,6 +441,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 	public function getRoutineComparison(){
 		
 		$prev_log_id = null;
+		$found = false;
 		$username = $_SESSION['user_name'];
 		$this->load->model('workout_routine_model');
 		$this->load->model('workout_log_model');
@@ -460,28 +462,33 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 					return;
 				}
 
-
+				//PREVIOUS ID data handling is broken
 				//Find the last workout that isnt the current one.  Get that log_id and use it as the key in the SESSION arrays that hold reps/weights
-
 
 				for($i = 0; $i < sizeof($result_workout_previous) ; $i = $i + 1)
 				{
-						
+							//need to fix this algorithm. broken for 1st item. after clicking 1st item it always returns null.
 
 						if($id == $result_workout_previous[$i]["id_log"])	//Check if the id log of the row is our current selected ID.  Exit loop.
 						{
+						
 							break;
 						}
+
 
 						$prev_log_id = $result_workout_previous[$i]["id_log"];
 
 				}
 
-				if($prev_log_id != null)
+				if($prev_log_id!=null)
 				{	
 					$_SESSION['curr_workout_id'] = $id;
 					$_SESSION['prev_workout_id'] = $prev_log_id;
 					$this -> compareData($exercises,$prev_log_id,$id);
+				}
+				else
+				{
+					//$_SESSION['prev_workout_id'] = null;
 				}
 
 	}
@@ -532,91 +539,176 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 	public function getGraphData(){
 
-		$new_weight_string = "";
+
+
+			/*
+					
+				@param: log_id
+
+				Use log_id to get routine_name from selected log. [x]
+					Get exercisees based on routine_name.  [x]
+						For initial state, grab the first indexed exercise.
+							Grab data_weight for all previous log_ids @ exercise_offset ( in this case 0)
+								Grab data_reps for all preivious log_ids @ exercise offset (in this case 0)
+								   Build JSON array and echo to client
+
+			*/
+
+		$weight_string = "";
 		$new_reps_string = "";
 		$old_weight_string = "";
-		$old_reps_string = "";
+		$reps_string = "";
+		$prev_id = "";
+		$previous_ids = array();					//Array to store all the previous IDs matching the current routine.
 
-		$size = sizeof($_SESSION['reps'][$_SESSION['prev_workout_id']]["repetitions"]);
-		$prev_id = $_SESSION['prev_workout_id'];
-		$current_id = $this -> input -> post('id_log');
+		$username = $_SESSION['user_name'];
+		$id = $this->input->post('id_log');
 
-		for($i=0;$i<$size;$i=$i+1)
-		{	
-			$prev_rep = $_SESSION['reps'][$prev_id]["repetitions"][$i];
-			$curr_rep = $_SESSION['reps'][$current_id]["repetitions"][$i];
-			$prev_weight = $_SESSION['weight'][$prev_id]["weight"][$i];
-			$curr_weight = $_SESSION['weight'][$current_id]["weight"][$i];
+		$result = $this->getRoutineWorkouts($id,$username);									//Get routine workouts that match the clicked id of the workout item.  
+		
+		$exercises_string    = $result-> exercises;		
+		$exercises = explode(',',$exercises_string);	
 
-			$old_reps_string = $old_reps_string.$prev_rep.",";
-			$new_reps_string = $new_reps_string.$curr_rep.",";
+		$routine_name = $result-> name_of_routine;	
 
-			$old_weight_string = $old_weight_string.$prev_weight.",";
-			$new_weight_string = $new_weight_string.$curr_weight.",";
+		$previous_ids = $this -> getAllPreviousRoutineData($routine_name,$username,$id);	//Grab all previous workout log items based on the routine name and username
+
+		if($previous_ids == null)
+		{
+
+			echo "404";								//Echo 404 and hide graph and show message.
+			return;
 
 		}
-		$new_reps_string = $old_reps_string.$new_reps_string;
-		$new_weight_string = $old_weight_string.$new_weight_string;
 
-		$old_reps_string = substr($old_reps_string, 0, -1);
-		$new_reps_string = substr($new_reps_string,0,-1);
-		$old_weight_string = substr($old_weight_string, 0, -1);
-		$new_weight_string = substr($new_weight_string,0,-1);
+		$size = sizeof($_SESSION['reps'][$_SESSION['prev_workout_id']]["repetitions"]);
 
-				
-		$data_old_reps = explode( ',', $old_reps_string);
-		$data_new_reps = explode( ',', $new_reps_string);
-		$data_old_weight = explode(',', $old_weight_string);
-		$data_new_weight = explode(',', $new_weight_string);
+		$exercise_name = $exercises[0];			//Set the exercise name for the graph title
+
+
+		for($i = 0 ; $i < sizeof($previous_ids); $i = $i + 1)
+		{	
+			$prev_id = $previous_ids[$i];
+			$weight_string = $weight_string.$_SESSION['weight'][$prev_id]["weight"][0].",";	    //get at workout id at exercise offset $i
+			$reps_string    = $reps_string.$_SESSION['reps'][$prev_id]["repetitions"][0].",";
+		}
+		
+		$weight_string = substr($weight_string,0,-1);		//Get rid of trailing comma
+		$reps_string   = substr($reps_string,0,-1);
+
+		$data_weight = explode(',',$weight_string);			//Explode the strings into corresponding arrays
+		$data_reps   = explode(',',$reps_string);
+
+		array_walk($data_reps,'intval');
+		array_walk($data_weight,'intval');
+
+
+		foreach ($data_reps as $key => $var) {				//Convert to int array
+		    
+		    $data_reps[$key] = (int)$var;
+		   	
+
+		}
+
+		foreach ($data_weight as $key => $var) {
+		 
+		   	
+		   	$data_weight[$key] = (int)$var;
+
+
+		}
+
+		/*
+			for($i = 0; $i < sizeof($exercises); $i = $i + 1)
+			{
+				for($j = 0 ; $j < sizeof($previous_ids); $j = $j + 1)
+				{
+						$prev_id     = $previous_ids[$j];
+						echo "Adding data for id: ".$prev_id;
+						$prev_weight = $_SESSION['weight'][$prev_id]["weight"][$i];	    //get at workout id at exercise offset $i
+						$prev_rep    = $_SESSION['reps'][$prev_id]["repetitions"][$i];
+
+						$data_weight[$i] = $prev_weight.",";
+						$data_reps[$i]   = $prev_rep.",";								//Save the weight/rep data for all ids of an exercise.
+
+				}
+					$data_reps[$i] = substr($data_reps[$i],0,-1);						//Parse out the last comma
+					$data_weight[$i] = substr($data_weight[$i],0,-1);
+
+			}
+
+
+
+			for($i = 0; $i < sizeof($exercises); $i = $i + 1)
+			{
+
+					$response["ExerciseName_".$i] = $exercises[$i];
+					$response["DataWeight_".$i] = explode(',',$data_weight[$i]);  
+					$response["DataReps_".$i] = explode(',',$data_reps[$i]);
+
+			}
+			var_dump($response);
+
+
+	*/
+
+
+/*
+		array_walk($data_reps,'intval');
+		array_walk($data_weight,'intval');
+
+	
+
+	*/
+		$response = array( 'exerciseName'=>$exercise_name,'repetitions' => $data_reps,'weight'=>$data_weight);
+
+		echo json_encode($response);
+	}
+
+
+
+
+
+
+	public function getAllPreviousRoutineData($routine_name,$username,$id){
+
+				$this->load->model('workout_log_model');
+				$this->load->model('workout_routine_model');
+
 
 
 		
+				$result_workout_previous = $this->workout_log_model->getLastMatchingWorkoutObject($username,$routine_name);
 
-
-		array_walk( $data_old_reps, 'intval' );
-	    array_walk( $data_new_reps, 'intval' );
-		array_walk( $data_old_weight, 'intval' );
-	    array_walk( $data_new_weight, 'intval' );
-
-		foreach ($data_old_reps as $key => $var) {
-		    $data_old_reps[$key] = (int)$var;
-		   
-		}
-
-		foreach ($data_new_reps as $key => $var) {
-		    
-		    $data_new_reps[$key] = (int)$var;
-		   	
-
-		}
-
-		foreach ($data_old_weight as $key => $var) {
-	   	
-		    $data_old_weight[$key] = (int)$var;
-
-		}
-
-		foreach ($data_new_weight as $key => $var) {
-		 
-		   	
-		   	$data_new_weight[$key] = (int)$var;
-
-		}
-
-//Change the gather function to gather ALL previous not just the last one
+				if($result_workout_previous == false)
+				{
+					echo "404: previous routine not found";
+					return;
+				}
 
 
 
-		$Response = array( 'NewReps' => $data_new_reps,'NewWeight'=>$data_new_weight);
-		echo json_encode($Response);
+				if(sizeof($result_workout_previous) == 1)
+				{
+					return false;		//Return if there is only one entry 
+				}
 
 
 
+				for($i = 0; $i < sizeof($result_workout_previous) ; $i = $i + 1)
+				{	
 
-		//echo "Old Reps:".$old_reps_string; 
-		//echo "<br>";
-		//echo "New Reps:".$new_reps_string;
+					if($id == $result_workout_previous[$i]["id_log"])
+					{
+						$previous_ids[$i] = $result_workout_previous[$i]["id_log"];
+						return $previous_ids;
+					}
 
+					$previous_ids[$i] = $result_workout_previous[$i]["id_log"];
+
+				}
+
+				return $previous_ids;
 
 
 	}

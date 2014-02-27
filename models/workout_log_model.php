@@ -59,7 +59,7 @@
 		/**
 		* Function: getLastMatchingWorkoutObject($routine_name)
 		* Param: $routine_name 
-		* Get the last workout log tagged with the current selected routine name
+		* Get all matching logs with matching routine
 		*/
 		public function getLastMatchingWorkoutObject($username,$routine_name){
 
