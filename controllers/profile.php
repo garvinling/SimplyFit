@@ -340,7 +340,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 							$workout_item[$i][$j+1] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
 
 							//$workout_item[$i][$j+2] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">".$types[$log_id]["types"]."</h3></div></div>";
-							$workout_item[$i][$j+2] = $this->getIndicatorLine($types[$log_id]["types"]);
+							$workout_item[$i][$j+2] = $this->getIndicatorLine($types[$log_id]["types"],$log_id);
 
 							$workout_item[$i][$j+3] =  "</div>
 					</div>
@@ -748,28 +748,28 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 	}
 
-	private function getIndicatorLine($indicator){
+	private function getIndicatorLine($indicator,$id_log){
 
 
 			if($indicator == 'S')
 			{
-				return "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
+				return "<div class=\"circle-text-strength\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">S</h3></div></div>";
 
 			}
 			else if($indicator == 'X')
 			{
-				return "<div class=\"circle-text-cross\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">X</h3></div></div>";
+				return "<div class=\"circle-text-cross\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">X</h3></div></div>";
 
 			}
 			else if($indicator == 'C')
 			{				
 
-				return "<div class=\"circle-text\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">C</h3></div></div>";
+				return "<div class=\"circle-text\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">C</h3></div></div>";
 
 			}
 			else if($indicator == 'H')
 			{
-				return "<div class=\"circle-text-HIIT\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">H</h3></div></div>";
+				return "<div class=\"circle-text-HIIT\" style=\" color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">H</h3></div></div>";
 
 			}
 

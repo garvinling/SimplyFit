@@ -81,7 +81,7 @@
 					<br>
 					<li><div class="circle-text-strength" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">S</h1></div></div></li>
 					<br>
-					<li><div class="circle-text" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">C</h1></div></div></li>
+					<li><a href="" id="show_only_cardio"><div class="circle-text" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">C</h1></div></div></a></li>
 				</ul>
 			</div>
 		</div>
