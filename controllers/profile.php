@@ -161,8 +161,8 @@ class Profile extends CI_Controller {
 			}
 
 			//Create the workout routine first, then create the log.  the log inherits from routine db object. 
-			$this->load->model('workout_routine_model');
-			$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
+			//$this->load->model('workout_routine_model');
+			//$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
 
 
 			$date_month = date('F');
@@ -198,6 +198,8 @@ class Profile extends CI_Controller {
 
 			}
 
+			$type = $this->getType($exercises);
+
 			//Create the workout routine first, then create the log.  the log inherits from routine db object. 
 			$this->load->model('workout_routine_model');
 			$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
@@ -209,9 +211,10 @@ class Profile extends CI_Controller {
 
 			echo $tags;
 			$this ->load->model('workout_log_model');
-			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags);
+			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags,$type);
 			echo "200";
 	}
+
 
 
 
@@ -295,7 +298,6 @@ class Profile extends CI_Controller {
 
 
 
-
 for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 {		
 
@@ -323,7 +325,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 												
 							$workout_item[$i][9] =  "<h4 id=\"workout_highlights_weight\">Best weight: <span id=\"highlight_text\">".$max_weight." lbs.</span></h4></div>";
 
-							$workout_item[$i][10] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
+							$workout_item[$i][10] =  "<div class=\"col-md-4\" id=\"item_workout_tags\">";
 
 								
 								for($k = 0 ; $k < sizeof($tags[$log_id]["tags"]); $k = $k + 1)
@@ -693,6 +695,10 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 	}
 
 
+
+
+
+
 	public function calculatePercentage($starting,$current){
 
 			$total = $current - $starting; 
@@ -709,6 +715,37 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 	}
 
 
+
+	private function getType($exercises){
+
+
+		//This function is the algorithm for auto-detecting workouttype 
+		//Need to come up with some sort of a language processor or table lookup.  
+
+
+		//For now we will look at basic cases such as searching for body part names/lift/etc. 
+
+
+		for($i = 0; $i < sizeof($exercises); $i = $i + 1)
+		{
+
+			$ex = $exercises[$i];
+
+			if(strpos($ex,'bicep') !== FALSE)
+			{
+				return "S";
+			}
+			else
+			{
+				return "?";
+			}
+
+
+		}
+
+
+
+	}
 
 
 
