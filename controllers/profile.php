@@ -277,6 +277,7 @@ class Profile extends CI_Controller {
 		$workout_item = array();
 		$log_ids = array();
 		$routines = array();
+		$types = array();
 
 		$_SESSION['workout_items_num'] = sizeof($result);  //Number of workout items to list
 		for($i = 0 ; $i < sizeof($result); $i = $i + 1)
@@ -289,12 +290,12 @@ class Profile extends CI_Controller {
 				$repetitions[$id]["repetitions"] = explode(',',$result[$i]["repetitions"]);
 				$weight[$id]["weight"] = explode(',',$result[$i]["weight"]);
 				$routines[$id]["routines"] = $result[$i]["name_of_routine"];
+				$types[$id]["types"] = $result[$i]["type"];
 
 				// Structure: 
 				// Tags --> item[i] --> array_of_tags[j];
 				// Access: $weight[i]["repetitions"][j];
 		}
-
 
 
 
@@ -338,7 +339,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 						
 							$workout_item[$i][$j+1] =  "<div class=\"col-md-2\" id=\"item_workout_tags\">";
 
-							$workout_item[$i][$j+2] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">S</h3></div></div>";
+							$workout_item[$i][$j+2] =  "<div class=\"circle-text-strength\" style=\"width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator\">".$types[$log_id]["types"]."</h3></div></div>";
 
 
 							$workout_item[$i][$j+3] =  "</div>
