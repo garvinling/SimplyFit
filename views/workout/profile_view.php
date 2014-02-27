@@ -55,8 +55,8 @@
 		<div class="row">
 			<div class="col-md-12" style="">
 				<div class="btn-group" style="margin-left:55px; margin-right:auto; ">
-				  <button type="button" class="btn btn-default" style="width:65px;"><span class="glyphicon glyphicon-stats"></span></button>
-				  <button type="button" class="btn btn-default" style="width:65px;"><span class="glyphicon glyphicon-list"></span></button>
+				  <button type="button" class="btn btn-default" style="width:65px;" id="display_graph"><span class="glyphicon glyphicon-stats"></span></button>
+				  <button type="button" class="btn btn-default" style="width:65px;" id="display_list"><span class="glyphicon glyphicon-list"></span></button>
 				  <button type="button" class="btn btn-default" style="width:65px;"><span class="glyphicon glyphicon-cog"></span></button>
 				</div>
 			</div>
@@ -92,6 +92,18 @@
 
 
 		<div id="dat_main_content_doe" style="color:black;">
+
+			<div id="graph_view" style="display:none;">
+
+          			 <div id="graph_container_main" style="min-width: 600px; height: auto; margin: 0 auto"></div>
+
+
+
+			</div>
+
+
+
+
 
 			<div id="workout_item_list">
 		<!--		  <div id="workout_item">

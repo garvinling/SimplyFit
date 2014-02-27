@@ -295,7 +295,6 @@ class Profile extends CI_Controller {
 
 
 
-var_dump($tags);
 
 for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 {		
