@@ -753,23 +753,23 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 			if($indicator == 'S')
 			{
-				return "<div class=\"circle-text-strength\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\" style=\"color:white;\">S</h3></div></div>";
+				return "<div class=\"circle-text-strength\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">S</h3></div></div>";
 
 			}
 			else if($indicator == 'X')
 			{
-				return "<div class=\"circle-text-cross\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\" style=\"color:white;\">X</h3></div></div>";
+				return "<div class=\"circle-text-cross\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">X</h3></div></div>";
 
 			}
 			else if($indicator == 'C')
 			{				
 
-				return "<div class=\"circle-text\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\" style=\"color:white;\">C</h3></div></div>";
+				return "<div class=\"circle-text\" style=\"color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">C</h3></div></div>";
 
 			}
 			else if($indicator == 'H')
 			{
-				return "<div class=\"circle-text-HIIT\" style=\" color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\" style=\"color:white;\">H</h3></div></div>";
+				return "<div class=\"circle-text-HIIT\" style=\" color:white;width:70px; margin-top:-13px; margin-left:12px;\"><div><h3 id=\"code_indicator_".$id_log."\">H</h3></div></div>";
 
 			}
 
