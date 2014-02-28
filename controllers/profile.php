@@ -778,6 +778,63 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 
 
+	public function getWorkoutPercentage(){
+
+		$s = 0;
+		$x = 0;
+		$h = 0;
+		$c = 0;
+
+		$username = $_SESSION['user_name'];
+		$this ->load->model('workout_log_model');
+		$result = $this->workout_log_model->getTypes($username);
+
+		if($result == false)
+		{
+			echo "404";
+			return;
+		}
+
+		for($i = 0 ; $i < sizeof($result); $i = $i + 1)
+		{
+
+			$type = $result[$i]["type"];
+
+			if($type == 'C')
+			{
+				$c++;
+			}
+			else if($type == 'X')
+			{	
+				$x++;
+
+			}
+			else if($type == 'H')
+			{
+				$h++;
+
+			}
+			else if($type == 'S')
+			{
+				$s++;
+			}
+
+
+		}
+
+		$total = $c + $x + $h + $s; 
+
+		$c_percentage = ($c / $total)*100;
+		$x_percentage = ($x / $total)*100;
+		$h_percentage = ($h / $total)*100;
+		$s_percentage = ($s / $total)*100;
+
+		$response = array('Cpercentage'=>$c_percentage,'Xpercentage'=>$x_percentage,'Hpercentage'=>$h_percentage,'Spercentage'=>$s_percentage);
+
+		echo json_encode($response);
+
+	}
+
 
 
 

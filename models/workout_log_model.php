@@ -77,6 +77,27 @@
 		}
 
 
+		/**
+		* Function: getTypes($username)
+		* Param: $username
+		* Get all types with username given
+		*/
+		public function getTypes($username)
+		{
+
+			$q = $this -> db -> where('id_username',$username) -> get('user_workouts_logs');
+
+			if($q -> num_rows > 0)
+			{
+				return $q -> result_array();
+			}
+
+			return false;
+
+
+		}
+
+
 
 
 
