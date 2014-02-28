@@ -95,9 +95,10 @@
 
 			<div id="graph_view" style="display:none;">
 
-          			 <div id="graph_container_main" style="min-width: 600px; height: auto; margin: 0 auto"></div>
+          			 <div id="graph_container_main" style="min-width: 1000px; height: auto; margin: 0 auto"></div><br><br>
+          			 <div id="graph_container_main_2" style="min-width: 1000px; height: auto; margin: 0 auto"></div>
 
-
+          			 <br><br><br><br>
 
 			</div>
 
