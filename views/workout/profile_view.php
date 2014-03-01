@@ -33,9 +33,9 @@
 
 				<div class="col-md-2" style="width:700px; margin-top:10px;">
 					<ul id="top_menu_wrapper">
-						<li id="top_menu"><a href="#">Workouts</a></li>
-						<li id="top_menu"><a href="#">Schedule</a></li>
-						<li id="top_menu"><a href="#">Add Exercise</a></li>
+						<li id="top_menu"><a href="#" id="workouts_button">Workouts</a></li>
+						<li id="top_menu"><a href="#" id="schedule_button">Schedule</a></li>
+						<li id="top_menu"><a href="#">Add Goal</a></li>
 						<li id="top_menu"><a href="../workoutlogger/logout">Logout</a></li>
 					</ul>
 				</div>
@@ -68,14 +68,8 @@
 			<div class="col-md-12">
 
 				<ul id="tag_selector">
-					<?   /*
-							circle-text-HIIT
-							circle-text-cross
-							circle-text-strength
-							circle-text
-						 */ 
-					?>
-					<li><a href="" id="show_only_HIIT"><div class="circle-text-HIIT" class="rotate" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">H</h1></div></div></a></li>
+
+					<li><a href="" id="show_only_HIIT" ><div class="circle-text-HIIT" class="rotate" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">H</h1></div></div></a></li>
 					<br>
 					<li><a href="" id="show_only_cross"><div class="circle-text-cross" style="width:50px;"><div><h1 id="code_indicator" style="font-size:20px;">X</h1></div></div></a></li>
 					<br>
@@ -104,48 +98,26 @@
 
 
 
+			<div id="schedule_view" style="display:none;">
+
+				<h1>Schedule your workouts</h1>
+
+
+			</div>
+
+
+			<div id="workouts_view" style="display:none;">
+				<? //List all workouts from all routines and quick stats about them?>
+				<h1>Workouts</h1>
+
+
+			</div>
+
+
+
 
 
 			<div id="workout_item_list">
-		<!--		  <div id="workout_item">
-					
-					<div class="row">
-						
-							<div class="col-md-2"id="item_date">
-
-								<h2 id="date_month">Jan</h2>
-								<h1 id="date_day">21</h1>
-							</div>
-
-							<div class="col-md-4"id="item_time_highlights">
-
-								<h4 id="workout_time">Elapsed time: 23:09</h4>
-								<h4 id="workout_highlights_reps">Best reps: <span id="highlight_text">12</span></h4>
-								<h4 id="workout_highlights_weight">Best weight: <span id="highlight_text">130 lbs.</span></h4>
-							</div>
-
-							<div class="col-md-4"id="item_workout_tags">
-
-								<a href="#"><code>Leg day</code></a>
-								<a href="#"><code>quads</code></a>
-								<a href="#"><code>hamstrings</code></a>
-								<a href="#"><code>calves</code></a>
-								<a href="#"><code>squatcity</code></a>
-								<a href="#"><code>neverskiplegday</code></a>
-
-
-							</div>
-
-						
-							<div class="col-md-2"id="item_workout_tags">
-
-								<div class="circle-text-strength" style="width:70px; margin-top:-13px; margin-left:12px;"><div><h3 id="code_indicator">S</h3></div></div>
-	
-
-						</div>
-					</div>
-				</div><End workout item -->
-	
 
 				<?
 				if(isset($_SESSION['workout_items']))
@@ -385,6 +357,7 @@
 <script src="http://garvinling.com/bootstrap/js/bootstrap.js"></script>
 <script src="http://garvinling.com/Highcharts/js/highcharts.js"></script>
 <script src="http://garvinling.com/Highcharts/js/modules/exporting.js"></script>
+
 </body>
 
 </html>

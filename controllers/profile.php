@@ -163,6 +163,7 @@ class Profile extends CI_Controller {
 			//Create the workout routine first, then create the log.  the log inherits from routine db object. 
 			//$this->load->model('workout_routine_model');
 			//$this->workout_routine_model->createNewRoutine($username,$routine_name,$exercises);
+			$type = $this->getType($exercises);
 
 
 			$date_month = date('F');
@@ -171,7 +172,7 @@ class Profile extends CI_Controller {
 
 			echo $tags;
 			$this ->load->model('workout_log_model');
-			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags);
+			$this->workout_log_model->createNewLog($username,$date_month,$date_day,$routine_name,$weights,$repetitions,$tags,$type);
 			echo "200";
 	}
 
@@ -732,13 +733,13 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 			$ex = $exercises[$i];
 
-			if(strpos($ex,'bicep') !== FALSE)
+			if(strpos($ex,'bicep') !== FALSE  || strpos($ex,'skull crushers') || strpos($ex,'dips'))
 			{
 				return "S";
 			}
 			else
 			{
-				return "?";
+				return "H";
 			}
 
 
