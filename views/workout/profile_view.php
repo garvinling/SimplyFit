@@ -30,7 +30,7 @@
 					<h1>SimplyFit</h1>
 
 				</div>
-				<div class="col-md-2" style="width:700px; margin-top:10px;">
+				<div class="col-md-2" style="width:900px; margin-top:10px;">
 					<ul id="top_menu_wrapper">
 						<li id="top_menu"><a href="#" id="workouts_button">Workouts</a></li>
 						<li id="top_menu"><a href="#" id="schedule_button">Schedule</a></li>
@@ -39,7 +39,7 @@
 
 						<!--<form style="display:inline;"><input/></form>-->
 
-						<input type="text" id="search_input" style="display:inline;"></input><!-- filtering repeater::angular-->
+						<input type="text" id="search_input" style="display:inline;" placeholder="Search #Tags"></input><!-- filtering repeater::angular-->
 
 					</ul>
 				</div>
