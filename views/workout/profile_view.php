@@ -30,18 +30,21 @@
 					<h1>SimplyFit</h1>
 
 				</div>
-
 				<div class="col-md-2" style="width:700px; margin-top:10px;">
 					<ul id="top_menu_wrapper">
 						<li id="top_menu"><a href="#" id="workouts_button">Workouts</a></li>
 						<li id="top_menu"><a href="#" id="schedule_button">Schedule</a></li>
 						<li id="top_menu"><a href="#">Add Goal</a></li>
 						<li id="top_menu"><a href="../workoutlogger/logout">Logout</a></li>
+
+						<!--<form style="display:inline;"><input/></form>-->
+
+						<input type="text" id="search_input" style="display:inline;"></input><!-- filtering repeater::angular-->
+
 					</ul>
 				</div>
 			</div>
 		</div>
-
 
 		<div id="side_thang">
 		
@@ -50,6 +53,7 @@
 				<div class="circle-text" style="margin-left:auto; margin-right:auto;"><div><h1 id="code_indicator">C</h1></div></div>
 			</div>
 		</div>
+
 		<br><br>
 
 		<div class="row">
