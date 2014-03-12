@@ -67,7 +67,7 @@ class Workoutlogger extends CI_Controller {
 
 		if($exists == true)
 		{
-				$result = $this->user_model->get($username,$pw);
+				$result = $this->user_model->loginUser($username,$pw);
 
 
 				if($result != false)

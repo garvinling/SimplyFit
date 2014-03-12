@@ -25,9 +25,6 @@ class Profile extends CI_Controller {
 			$this->buildLogList();
 			$this->load->view('workout/profile_view');  //Send in data through the second argument
 
-
-
-
 		}
 		else
 		{

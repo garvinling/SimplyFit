@@ -20,7 +20,7 @@
 		* 
 		*	Returns user if there is an ID
 		*/ 
-		public function get($id,$pw){
+		public function loginUser($id,$pw){
 
 				$q = $this -> db -> where('id_username',$id)->where('pw',sha1($pw))->limit(1)->get('user_table');
 
