@@ -1,7 +1,7 @@
 
  <?include('includes.php');?>
   <link rel="stylesheet" type="text/css" href="http://garvinling.com/stylesheet_workout.css"/>
-
+  <title>SimplyFit</title>
     </head>
 
 <body>
@@ -13,26 +13,25 @@
 
 </section>
 
- <section data-type="background" id="section_2_bg">
-	<section id="section_2_overlay">
-    <div class="row" id="section_2_content">
-
-
-
-        <div class="col-md-12" id="hero_text_wrapper">
+ <section data-type="background" id="section_2_bg" style="height:800px; ">
+	<section id="section_2_overlay" style="height:100%;">
+    <div class="row" id="section_2_content" style="text-align:left;">
+        <div class="col-md-12" id="hero_text_wrapper" style="">
          
           <img src="linecons/512/calendar.png" style="height:75px;">
 
-          <p style="padding:12px;">
-         <h2 id="sub_title_top">Track your fitness.</h2> 
-         <h3> A workout logger for everyone. Simple and free.</h3>  
+         <p style="padding:12px; text-align:left;">
+         <!--<h1 id="title_text" style="color:black;"> A workout logger for everyone. Simple and free.</h1>-->
+         <h1 id="title_text">Log</h1>
+         <h1 id="title_text">your</h1>
+         <h1 id="title_text">workouts</h1>
          <br>
-        
-         <button class="btn btn-large btn-primary" type="button" data-toggle="modal"data-target="#friendModal">Log in
+         <br>
+         <button class="btn btn-large btn-primary" type="button" data-toggle="modal"data-target="#friendModal" style="font-family:'Montserrat',sans-serif;">Log in
          <i class="icon-plus icon-white"></i></button>
 
 
-         <a href="#"><button class="btn btn-warning" id="start_button" data-toggle="modal" data-target="#registerModal">Get Started</button></a>
+         <a href="#"><button class="btn btn-warning" id="start_button" data-toggle="modal" data-target="#registerModal" style="font-family:'Montserrat',sans-serif;">Get Started</button></a>
 
           </p>
 
@@ -42,6 +41,8 @@
 </section>      
         
 
+
+<!--
   <section data-type="background" id="section_about_bg">
   <section id="section_about_overlay">
         
@@ -89,17 +90,165 @@
   </section>
 </section> 
 
+-->
 
 
 
-
-<section data-type="background" id="section_about_2_bg">
-  <section id="section_about_2_overlay">
+<section data-type="background" id="section_about_2_bg" style="border-top:1px solid #ecf0f1;  border-bottom:1px solid #ecf0f1; ">
+  <section id="section_about_2_overlay" style="padding-top:130px; padding-bottom:90px;">
    
+    <div class="row" style="text-align:left;">
+      <div style="margin-left:auto; margin-right:auto;">
+
+        <div class="col-md-6" style="text-align:left; padding-left:90px;">
+         
+          <div style="max-width:620px; min-width:600px; margin-left:auto; ">
+          <h2 style="color:#34495e;">Leave the work to us</h2>
+          <br>
+          <p id="smart_log_description" style="line-height:32px;">
+
+            Our goal is to make workout logging as simple as possible for you.  
+            Create your routine, add your workouts, record your reps/weight and we will do the heavy lifting for you.
+            We will categorize your workouts based on the info you gave us. 
+
+            <br><br>Focus on the gains, not the logging.
+
+
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        
+        <div style=" margin-right:auto;">
+        <img src="http://garvinling.com/img/profile_1.png" width="620px"/>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
 
   </section>
 </section> 
 
+
+
+
+
+<section data-type="background" id="section_about_2_bg" style="background-image:url('http://garvinling.com/img/bg_devices.JPG'); border-bottom:1px solid #ecf0f1; background-color:#F0F0F0;">
+  <section id="section_about_2_overlay" style="background-color:rgba(246, 248, 248,1.0); padding-top:130px; padding-bottom:90px;">
+   
+    <div class="row" style="text-align:left;" style="background-color:#F0F0F0;">
+      <div style="margin-left:auto; margin-right:auto;">
+      <div class="col-md-6" style="text-align:left; padding-left:90px;" id="graph_left">
+     
+        <div style="max-width:940px; min-width:600px; margin-left:auto; ">
+        <img src="http://garvinling.com/img/graph_description.png" style="width:100%; border:1px solid #ecf0f1;"/>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-6" style="">
+        <div style="max-width:620px; min-width:600px; margin-right:auto; padding-left:40px;">
+         
+          <h2 style="color:#34495e;">Strike a balance</h2>
+          <br>
+          <p id="smart_log_description" style="line-height:32px; ">
+          SimplyFit provides a breakdown of your workout life so you can easily adjust your routines to address areas that need work. 
+          <br>
+          
+          <br><br>
+          </p>
+     
+      </div>
+      
+
+      </div>
+
+      </div>
+
+    </div>
+
+  </section>
+</section> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section data-type="background" id="section_about_2_bg" style="padding-top:130px; background-color:white;">
+  <section id="section_about_2_overlay">
+   
+    <div class="row" style="text-align:left;">
+      <div style="margin-left:auto; margin-right:auto;">
+      <div class="col-md-6" style="text-align:left; padding-left:90px;">
+        <div style="max-width:620px; min-width:600px; margin-left:auto; ">
+        <h1 style="color:#34495e;">Custom Routines</h1>
+        <br><br>
+        <p id="smart_log_description" style="line-height:32px;">
+          Create your own custom routines with workouts of your choice.
+          Keep tabs on your overall progress and improvements over time.
+          <br><br>
+        </p>
+      </div>
+      </div>
+
+      <div class="col-md-6">
+  
+        <div style=" margin-right:auto;">
+      
+            <img src="http://garvinling.com/img/analysis.png" width="620px"/>
+      
+        </div>
+       </div>
+      </div>
+    </div>
+  </section>
+</section> 
+
+
+
+<section data-type="background" id="section_about_2_bg" style="background-color:#34495e; margin-top:30px; height:240px;">
+  <section id="section_about_2_overlay" style="background-color:#34495e; height:240px;">
+   
+    <div class="row" style="text-align:left;">
+      <div style="margin-left:auto; margin-right:auto;">
+      
+
+      <div class="col-md-2" style="text-align:left; padding-left:90px;">
+        <div style="max-width:620px; min-width:600px; margin-left:auto; ">
+     
+          <h5 style="color:#7f8c8d">About</h5>
+          <h5>The Team</h5>
+          <h5>Blog</h5>
+
+      </div>
+      </div>
+
+      <div class="col-md-2">
+  
+          <h5 style="color:#7f8c8d">Social</h5>
+          <h5>Twitter</h5>
+          <h5>Facebook</h5>
+          <h5>Blog</h5>
+          <h5>GitHub</h5>
+       </div>
+      </div>
+    </div>
+  </section>
+</section> 
 
 
 

@@ -18,7 +18,7 @@ require(APPPATH.'libraries/REST_Controller.php');
 
 			/*
 
-				Get/Authenticate user based on username/password
+				GET user/:id/:pw
 
 			*/
 			function user_get(){
@@ -47,8 +47,6 @@ require(APPPATH.'libraries/REST_Controller.php');
 			}
 
 /*
-
-
 			function user_post(){
 
 				//Warning: csrf_protection is set to FALSE for testing.  We need to figure what to do with this.  
@@ -68,20 +66,23 @@ require(APPPATH.'libraries/REST_Controller.php');
 				$error_not_found   = json_encode(array('status'=>'User not found'));
 				$success_add       = json_encode(array('status'=>'User Added'));
 
-			
-
+		
 			}*/
 
-/*
+
+
+			/*
+				PUT user/:id/:pw
+				
+				Adds a new user to the db
+			*/
 			function user_put(){
 				
-				$email = $this->put('email');
+				$user = $this->put('user');
 				$pw = $this->put('pw');
-				$firstname = $this->put('firstname');
-				$lastname = $this->put('lastname');
-
 				$this->load->model('user_model');
-				if(!$email || !$pw || !$firstname || !$lastname){
+
+				if(!$user || !$pw ){
 
 					$this -> response(array('status'=>'Invalid parameters'),400);
 
@@ -89,32 +90,28 @@ require(APPPATH.'libraries/REST_Controller.php');
 
 				$user_data = array(
 
-								'email' => $email,
-								'pw'    => $pw,
-								'firstname' => $firstname,
-								'lastname' => $lastname
+					'user' => $user,
+					'pw'    => $pw
 								  
-								  );
+				);
 
 
 				$user = $this->user_model->put($user_data);
 
-				if($user){
+				if($user)
+				{
 
 					$this->response(array('Status'=>'OK'),200);
 				
 				}
-				else{
-
+				else
+				{
 
 					$this->response(array('Status'=>'Already Exists',400));
 
-
 				}
-
-
 			}
-*/
+
 
 
 

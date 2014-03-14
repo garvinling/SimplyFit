@@ -497,7 +497,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 				$percentage = $this->calculatePercentage($prev_rep,$curr_rep);
 
-				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> repetitions increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h1>";
+				$analysis[$i] = "<h3> Your <strong>".$exercises[$i]."</strong> repetitions increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h3>";
 				echo $analysis[$i];
 
 			}
@@ -505,7 +505,7 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 			if($curr_weight > $prev_weight)
 			{
 				$percentage = $this->calculatePercentage($prev_weight,$curr_weight);
-				$analysis[$i] = "<h1> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h1>";
+				$analysis[$i] = "<h3> Your <strong>".$exercises[$i]."</strong> weight increased by <span style=\"font-weight:bold; color:#e74c3c;\">".$percentage."%</span></h3>";
 				echo $analysis[$i];
 
 			}
@@ -667,7 +667,6 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 				}
 
 
-
 				if(sizeof($result_workout_previous) == 1)
 				{
 					return false;		//Return if there is only one entry 
@@ -727,10 +726,10 @@ for($i = 0; $i < sizeof($result) ; $i = $i + 1)
 
 		for($i = 0; $i < sizeof($exercises); $i = $i + 1)
 		{
-
+ 
 			$ex = $exercises[$i];
 
-			if(strpos($ex,'bicep') !== FALSE  || strpos($ex,'skull crushers') || strpos($ex,'dips'))
+			if(strpos($ex,'bicep') !== FALSE  || strpos($ex,'biceps') !== FALSE || strpos($ex,'skull crushers') != FALSE || strpos($ex,'dips')  !== FALSE)
 			{
 				return "S";
 			}

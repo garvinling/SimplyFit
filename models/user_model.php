@@ -11,15 +11,6 @@
 		}
 
 
-		/*
-		*	(API)
-		*
-		*	GET function for user model. 
-		*   
-		*   Requires: Email(ID) and Password(pw)  
-		* 
-		*	Returns user if there is an ID
-		*/ 
 		public function loginUser($id,$pw){
 
 				$q = $this -> db -> where('id_username',$id)->where('pw',sha1($pw))->limit(1)->get('user_table');
@@ -42,15 +33,6 @@
 
 		}
 
-		/*
-		*	(API)
-		*
-		*	PUT function for user model. 
-		*   
-		*   Requires: Email(ID) and Password(pw) , First-name, Last-name
-		* 
-		*	Returns user if there is an ID
-		*/ 
 
 		public function put($data){
 
