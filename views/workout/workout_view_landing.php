@@ -13,25 +13,105 @@
 
 </section>
 
- <section data-type="background" id="section_2_bg" style="height:800px; ">
+ <section data-type="background" id="section_2_bg" style="height:900px; ">
 	<section id="section_2_overlay" style="height:100%;">
-    <div class="row" id="section_2_content" style="text-align:left;">
+    <div class="row" id="section_2_content" style="text-align:center;">
         <div class="col-md-12" id="hero_text_wrapper" style="">
          
           <img src="linecons/512/calendar.png" style="height:75px;">
 
-         <p style="padding:12px; text-align:left;">
+         <p style="padding:12px; text-align:center;">
          <!--<h1 id="title_text" style="color:black;"> A workout logger for everyone. Simple and free.</h1>-->
-         <h1 id="title_text">Log</h1>
-         <h1 id="title_text">your</h1>
-         <h1 id="title_text">workouts</h1>
+         <h1 id="title_text">Keep track of your workout progress.  </h1>
+         <h1 id="title_text">Make sure your <span style="color:#E05151;">gains</span> get noticed.</h1><br>
          <br>
          <br>
-         <button class="btn btn-large btn-primary" type="button" data-toggle="modal"data-target="#friendModal" style="font-family:'Montserrat',sans-serif;">Log in
-         <i class="icon-plus icon-white"></i></button>
 
 
-         <a href="#"><button class="btn btn-warning" id="start_button" data-toggle="modal" data-target="#registerModal" style="font-family:'Montserrat',sans-serif;">Get Started</button></a>
+         <div class="row">
+
+         <div class="col-md-12">
+
+          <div style="margin-right:auto; margin-left:auto;">
+
+            <div class="row" style="width:500px; margin-left:auto; margin-right:auto;">
+
+
+              <div class="col-md-4" style="width:150px; height:110px;">
+              </div>
+
+              <div class="col-md-4" style="height:70px; width:150px; height:110px; padding:0px;">
+         <h3 id="title_text_sub">( It's free. )</h3>
+
+              </div>              
+
+              <div class="col-md-4" style=" height:70px;width:150px; height:110px;">
+              </div>
+
+          </div>
+         </div>
+         </div>
+       </div>
+
+         <div class="row">
+
+         <div class="col-md-12">
+
+          <div style="margin-right:auto; margin-left:auto;">
+
+            <div class="row" style="width:500px; margin-left:auto; margin-right:auto;">
+
+
+              <div class="col-md-4" style="background-color:#CF4858; width:150px; height:110px;">
+                <br><img src="linecons/512/settings.png" style="height:70px;">
+              </div>
+
+              <div class="col-md-4" style="background-color:#16A79D;height:70px; width:150px; height:110px;">
+                  <br><img src="linecons/512/fire.png" style="height:70px;">      
+              </div>              
+
+              <div class="col-md-4" style="background-color:#F4AC42; height:70px;width:150px; height:110px;">
+                <br><img src="linecons/512/search.png" style="height:70px;">       
+              </div>
+
+          </div>
+         </div>
+         </div>
+
+       </div>
+         <br><br>
+
+
+
+         <div class="row">
+
+         <div class="col-md-12">
+
+          <div style="margin-right:auto; margin-left:auto;">
+
+            <div class="row" style="width:500px; margin-left:auto; margin-right:auto;">
+
+
+              <div class="col-md-4" style="width:150px; height:110px;">
+              </div>
+
+              <div class="col-md-4" style="height:70px; width:150px; height:110px; padding:0px;">
+                <button class="btn btn-large btn-primary" type="button" data-toggle="modal"data-target="#friendModal" style=" margin:0px; padding:0px;font-family:'Montserrat',sans-serif;">Log in
+                <i class="icon-plus icon-white"></i></button>
+
+                <br><br>
+                <a href="#"><button class="btn btn-warning" id="start_button" data-toggle="modal" data-target="#registerModal" style="font-family:'Montserrat',sans-serif;">Get Started</button></a>
+
+              </div>              
+
+              <div class="col-md-4" style=" height:70px;width:150px; height:110px;">
+              </div>
+
+          </div>
+         </div>
+         </div>
+       </div>
+
 
           </p>
 
@@ -94,7 +174,7 @@
 
 
 
-<section data-type="background" id="section_about_2_bg" style="border-top:1px solid #ecf0f1;  border-bottom:1px solid #ecf0f1; ">
+<section data-type="background" id="section_about_2_bg" style="  ">
   <section id="section_about_2_overlay" style="padding-top:130px; padding-bottom:90px;">
    
     <div class="row" style="text-align:left;">
@@ -134,7 +214,7 @@
 
 
 
-
+<!--
 
 <section data-type="background" id="section_about_2_bg" style="background-image:url('http://garvinling.com/img/bg_devices.JPG'); border-bottom:1px solid #ecf0f1; background-color:#F0F0F0;">
   <section id="section_about_2_overlay" style="background-color:rgba(246, 248, 248,1.0); padding-top:130px; padding-bottom:90px;">
@@ -216,12 +296,12 @@
       </div>
     </div>
   </section>
-</section> 
+</section> -->
 
 
 
-<section data-type="background" id="section_about_2_bg" style="background-color:#34495e; margin-top:30px; height:240px;">
-  <section id="section_about_2_overlay" style="background-color:#34495e; height:240px;">
+<section data-type="background" id="section_about_2_bg" style="background-color:#333333; margin-top:30px; height:240px;">
+  <section id="section_about_2_overlay" style="background-color:#333333; height:240px;">
    
     <div class="row" style="text-align:left;">
       <div style="margin-left:auto; margin-right:auto;">
